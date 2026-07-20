@@ -9,7 +9,7 @@
 
 ## Welcome to WPFDevelopers.Avalonia
 
-基于 Avalonia 11.3 的 UI 组件库，提供丰富的控件主题和实用工具。
+基于 Avalonia 11.3 的 UI 组件库，提供丰富的控件主题和实用控件。
 
 ---
 

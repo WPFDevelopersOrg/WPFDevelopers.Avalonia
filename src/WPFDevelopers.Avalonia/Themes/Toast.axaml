@@ -1,0 +1,119 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WPFDevelopers.Avalonia.Controls">
+
+    <ControlTheme x:Key="{x:Type controls:ToastListBoxItem}" TargetType="controls:ToastListBoxItem">
+        <Setter Property="Width" Value="300" />
+        <Setter Property="Height" Value="NaN" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="4,2" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryBrush}" />
+        <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource WD.CornerRadius}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource WD.BaseBrush}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border
+                        Name="PART_Border"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <Path
+                                Name="PART_PathIcon"
+                                Width="20"
+                                Height="20"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                Data="{StaticResource WD.InfoGeometry}"
+                                Fill="{DynamicResource WD.PrimaryBrush}"
+                                Stretch="Uniform" />
+                            <TextBlock
+                                Name="PART_Text"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                FontSize="{TemplateBinding FontSize}"
+                                Foreground="{TemplateBinding Foreground}"
+                                Text="{TemplateBinding Content}"
+                                TextWrapping="Wrap" />
+                            <Button
+                                Name="PART_CloseButton"
+                                Grid.Column="2"
+                                Width="24"
+                                Height="24"
+                                Margin="4,0,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Theme="{StaticResource wd-path}">
+                                <PathIcon
+                                    Width="10"
+                                    Height="10"
+                                    Data="{StaticResource WD.WindowCloseGeometry}"
+                                    Foreground="{DynamicResource WD.RegularTextBrush}" />
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Rectangle
+                        Name="PART_Rectangle"
+                        Height="1"
+                        Margin="2,0"
+                        VerticalAlignment="Bottom"
+                        Fill="{DynamicResource WD.PrimaryBrush}" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:info /template/ Path#PART_PathIcon">
+            <Setter Property="Data" Value="{StaticResource WD.InfoGeometry}" />
+            <Setter Property="Fill" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+        <Style Selector="^:info">
+            <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryBrush}" />
+            <Style Selector="^:info /template/ Rectangle#PART_Rectangle">
+                <Setter Property="Fill" Value="{DynamicResource WD.PrimaryBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^:success /template/ Path#PART_PathIcon">
+            <Setter Property="Data" Value="{StaticResource WD.SuccessGeometry}" />
+            <Setter Property="Fill" Value="{DynamicResource WD.SuccessBrush}" />
+        </Style>
+        <Style Selector="^:success">
+            <Setter Property="Foreground" Value="{DynamicResource WD.SuccessBrush}" />
+            <Style Selector="^:success /template/ Rectangle#PART_Rectangle">
+                <Setter Property="Fill" Value="{DynamicResource WD.SuccessBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^:warning /template/ Path#PART_PathIcon">
+            <Setter Property="Data" Value="{StaticResource WD.WarningGeometry}" />
+            <Setter Property="Fill" Value="{DynamicResource WD.WarningBrush}" />
+        </Style>
+        <Style Selector="^:warning">
+            <Setter Property="Foreground" Value="{DynamicResource WD.WarningBrush}" />
+            <Style Selector="^:warning /template/ Rectangle#PART_Rectangle">
+                <Setter Property="Fill" Value="{DynamicResource WD.WarningBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^:error /template/ Path#PART_PathIcon">
+            <Setter Property="Data" Value="{StaticResource WD.ErrorGeometry}" />
+            <Setter Property="Fill" Value="{DynamicResource WD.DangerBrush}" />
+        </Style>
+        <Style Selector="^:error">
+            <Setter Property="Foreground" Value="{DynamicResource WD.DangerBrush}" />
+            <Style Selector="^:error /template/ Rectangle#PART_Rectangle">
+                <Setter Property="Fill" Value="{DynamicResource WD.DangerBrush}" />
+            </Style>
+        </Style>
+        <Style Selector="^:center /template/ TextBlock#PART_Text">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="^:center /template/ Path#PART_PathIcon">
+            <Setter Property="Margin" Value="0,0,6,0" />
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

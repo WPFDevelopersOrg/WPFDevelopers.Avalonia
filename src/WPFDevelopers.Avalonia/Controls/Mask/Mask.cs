@@ -78,6 +78,9 @@ namespace WPFDevelopers.Avalonia.Controls
         {
             if (control.GetValue(OverlayDataProperty) != null) return;
 
+            control.DetachedFromVisualTree -= OnDetachedFromVisualTree;
+            control.DetachedFromVisualTree += OnDetachedFromVisualTree;
+
             var background = control.GetValue(BackgroundProperty)
                 ?? control.FindResource("WD.ChartFillBrush") as IBrush
                 ?? Brushes.White;
@@ -127,6 +130,7 @@ namespace WPFDevelopers.Avalonia.Controls
             if (data is not OverlayInfo info) return;
 
             control.LayoutUpdated -= OnLayoutUpdated;
+            control.DetachedFromVisualTree -= OnDetachedFromVisualTree;
 
             if (info.Mode == OverlayMode.Adorner && info.OverlayGrid?.Parent is AdornerLayer al)
             {
@@ -138,6 +142,19 @@ namespace WPFDevelopers.Avalonia.Controls
             }
 
             control.SetValue(OverlayDataProperty, null);
+        }
+
+        private static void OnDetachedFromVisualTree(object? sender, VisualTreeAttachmentEventArgs e)
+        {
+            if (sender is not Control control)
+            {
+                return;
+            }
+
+            if (control.GetValue(IsShowProperty))
+            {
+                HideMask(control);
+            }
         }
 
         private static void OnLayoutUpdated(object? sender, System.EventArgs e)

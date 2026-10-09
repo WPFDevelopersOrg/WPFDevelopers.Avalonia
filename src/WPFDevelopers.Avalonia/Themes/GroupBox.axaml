@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wd="using:WPFDevelopers.Avalonia.Controls">
+                    xmlns:wd="using:WPFDevelopers.Avalonia.Controls"
+                    xmlns:cvt="using:WPFDevelopers.Avalonia.Converts">
 
     <ControlTheme x:Key="{x:Type wd:GroupBox}" TargetType="wd:GroupBox">
         <Setter Property="Padding" Value="{DynamicResource WD.Padding}" />
@@ -17,7 +18,7 @@
                             Background="{DynamicResource WD.LighterBrush}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static wd:CornerRadiusConverters.TopOnly}}">
+                            CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static cvt:CornerRadiusConverters.TopOnly}}">
                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Content="{TemplateBinding Header}"
@@ -29,7 +30,7 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="1,0,1,1"
-                            CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static wd:CornerRadiusConverters.BottomOnly}}">
+                            CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static cvt:CornerRadiusConverters.BottomOnly}}">
                         <ContentPresenter Margin="{TemplateBinding Padding}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"

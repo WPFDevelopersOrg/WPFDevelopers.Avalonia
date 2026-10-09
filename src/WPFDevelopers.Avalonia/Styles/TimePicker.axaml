@@ -142,7 +142,8 @@
                             <Grid ColumnDefinitions="*, Auto" Margin="{TemplateBinding Padding}">
                                 <Grid Name="PART_FlyoutButtonContentGrid"
                                       Grid.Column="0"
-                                      ColumnDefinitions="Auto,Auto,Auto,Auto,*">
+                                      MinWidth="160"
+                                      ColumnDefinitions="30*,Auto,30*,Auto,30*,Auto,36*">
                                     <Border Name="PART_FirstPickerHost"
                                             Grid.Column="0"
                                             HorizontalAlignment="Center"

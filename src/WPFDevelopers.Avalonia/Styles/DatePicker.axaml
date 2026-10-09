@@ -131,17 +131,21 @@
                             <Grid ColumnDefinitions="*, Auto" Margin="{TemplateBinding Padding}">
                                 <Grid Name="PART_ButtonContentGrid"
                                       Grid.Column="0"
-                                      ColumnDefinitions="80*,Auto,130*,Auto,78*">
+                                      MinWidth="160"
+                                      ColumnDefinitions="40*,Auto,50*,Auto,60*">
                                     <TextBlock Name="PART_DayTextBlock"
+                                               Grid.Column="0"
                                                Padding="4,0"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center" />
                                     <TextBlock Name="PART_MonthTextBlock"
+                                               Grid.Column="2"
                                                Padding="4,0"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                TextAlignment="Left" />
                                     <TextBlock Name="PART_YearTextBlock"
+                                               Grid.Column="4"
                                                Padding="4,0"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center" />

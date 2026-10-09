@@ -16,7 +16,7 @@
                                  Stroke="{TemplateBinding BorderBrush}"
                                  StrokeThickness="1" />
                         <Ellipse Name="checkMark"
-                                 Width="8" Height="8"
+                                 Width="0" Height="0"
                                  Fill="{DynamicResource WD.PrimaryBrush}"
                                  IsVisible="False"
                                  HorizontalAlignment="Center"
@@ -32,6 +32,25 @@
         </Setter>
         <Style Selector="^:checked /template/ Ellipse#checkMark">
             <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Width" Value="8" />
+            <Setter Property="Height" Value="8" />
+            <Style.Animations>
+                <Animation FillMode="Forward" Duration="0:0:0.18" Easing="CircularEaseInOut">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Width" Value="0" />
+                        <Setter Property="Height" Value="0" />
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Width" Value="8" />
+                        <Setter Property="Height" Value="8" />
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+        <Style Selector="^:not(:checked) /template/ Ellipse#checkMark">
+            <Setter Property="IsVisible" Value="False" />
+            <Setter Property="Width" Value="0" />
+            <Setter Property="Height" Value="0" />
         </Style>
         <Style Selector="^:checked /template/ Ellipse#ellipse">
             <Setter Property="Stroke" Value="{DynamicResource WD.PrimaryBrush}" />

@@ -1,0 +1,87 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WPFDevelopers.Avalonia.Controls">
+
+    <ControlTheme x:Key="{x:Type controls:WDMessageBoxPanel}" TargetType="controls:WDMessageBoxPanel">
+        <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+        <Setter Property="CornerRadius" Value="{DynamicResource WD.CornerRadius}" />
+        <Setter Property="Padding" Value="{DynamicResource WD.Padding}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Name="PART_Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Margin="{TemplateBinding Padding}"
+                        BoxShadow="{DynamicResource WD.MessageBoxShadow}">
+                    <Border Padding="{TemplateBinding Padding}">
+                        <StackPanel>
+                            <Grid Name="PART_TitleGrid" Margin="16,12,8,8" ColumnDefinitions="*,Auto">
+                                <TextBlock Name="PART_Title"
+                                           VerticalAlignment="Center"
+                                           FontSize="{TemplateBinding FontSize}"
+                                           FontWeight="{TemplateBinding FontWeight}"
+                                           Foreground="{DynamicResource WD.PrimaryTextBrush}" />
+                                <Button Name="PART_CloseButton"
+                                        Grid.Column="1"
+                                        Width="28" Height="28"
+                                        Theme="{StaticResource wd-path}">
+                                    <PathIcon Width="10" Height="10"
+                                              Data="{StaticResource WD.WindowCloseGeometry}"
+                                              Foreground="{DynamicResource WD.RegularTextBrush}" />
+                                </Button>
+                            </Grid>
+
+                            <Grid Margin="20,8,20,20" ColumnDefinitions="Auto,*">
+                                <PathIcon Name="PART_Path"
+                                          Width="28" Height="28"
+                                          Margin="0,0,12,0"
+                                          VerticalAlignment="Center"
+                                          Data="{StaticResource WD.InfoGeometry}"
+                                          Foreground="{DynamicResource WD.PrimaryBrush}" />
+                                <TextBlock Name="PART_Message"
+                                           Grid.Column="1"
+                                           MaxWidth="400"
+                                           Padding="4,0,0,0"
+                                           VerticalAlignment="Center"
+                                           FontSize="14"
+                                           Foreground="{DynamicResource WD.RegularTextBrush}"
+                                           TextWrapping="Wrap" />
+                            </Grid>
+
+                            <Border Padding="16,0,16,16">
+                                <StackPanel HorizontalAlignment="Right"
+                                            Orientation="Horizontal"
+                                            Spacing="8">
+                                    <Button Name="PART_ButtonYes"
+                                            Width="70" Height="32"
+                                            Content="Yes"
+                                            IsVisible="False" />
+                                    <Button Name="PART_ButtonNo"
+                                            Width="70" Height="32"
+                                            Content="No"
+                                            IsVisible="False"
+                                            Theme="{StaticResource wd-default}" />
+                                    <Button Name="PART_ButtonOK"
+                                            Width="70" Height="32"
+                                            Content="OK"
+                                            IsDefault="{TemplateBinding IsDefault}" />
+                                    <Button Name="PART_ButtonCancel"
+                                            Width="70" Height="32"
+                                            Content="Cancel"
+                                            IsVisible="False"
+                                            Theme="{StaticResource wd-default}" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

@@ -3,6 +3,6 @@
              xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
              x:Class="WPFDevelopers.Demo.App">
     <Application.Resources>
-        <wd:Resources Theme="Default"/>
+        <wd:Resources Theme="Light"/>
     </Application.Resources>
 </Application>

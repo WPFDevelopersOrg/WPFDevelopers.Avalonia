@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="/Themes/Basic/ControlBasic.axaml"/>
+        <ResourceInclude Source="/Themes/Basic/Light.Color.axaml"/>
+        <ResourceInclude Source="/Styles/Popup.axaml"/>
+        <ResourceInclude Source="/Styles/ScrollBar.axaml"/>
+        <ResourceInclude Source="/Styles/ScrollViewer.axaml"/>
+        <ResourceInclude Source="/Styles/Buttons.axaml"/>
+        <ResourceInclude Source="/Styles/DataGrid.axaml"/>
+        <ResourceInclude Source="/Styles/Calendar.axaml"/>
+        <ResourceInclude Source="/Styles/CalendarDatePicker.axaml"/>
+        <ResourceInclude Source="/Styles/DatePicker.axaml"/>
+        <ResourceInclude Source="/Styles/Label.axaml"/>
+        <ResourceInclude Source="/Styles/ListBox.axaml"/>
+        <ResourceInclude Source="/Styles/Menu.axaml"/>
+        <ResourceInclude Source="/Styles/TabControl.axaml"/>
+        <ResourceInclude Source="/Styles/TextBox.axaml"/>
+        <ResourceInclude Source="/Styles/TreeView.axaml"/>
+        <ResourceInclude Source="/Styles/Expander.axaml"/>
+        <ResourceInclude Source="/Styles/CheckBox.axaml"/>
+        <ResourceInclude Source="/Styles/RadioButton.axaml"/>
+        <ResourceInclude Source="/Styles/ToggleButton.axaml"/>
+        <ResourceInclude Source="/Styles/ProgressBar.axaml"/>
+        <ResourceInclude Source="/Styles/Slider.axaml"/>
+        <ResourceInclude Source="/Styles/PathIcon.axaml"/>
+        <ResourceInclude Source="/Styles/ComboBox.axaml"/>
+        <ResourceInclude Source="/Styles/RepeatButton.axaml"/>
+        <ResourceInclude Source="/Styles/Thumb.axaml"/>
+        <ResourceInclude Source="/Styles/GridSplitter.axaml"/>
+        <ResourceInclude Source="/Styles/Window.axaml"/>
+        <ResourceInclude Source="/Styles/ItemsControl.axaml"/>
+        <ResourceInclude Source="/Styles/Separator.axaml"/>
+        <ResourceInclude Source="/Styles/NumericUpDown.axaml"/>
+        <ResourceInclude Source="/Styles/TimePicker.axaml"/>
+        <ResourceInclude Source="/Styles/AutoCompleteBox.axaml"/>
+        <ResourceInclude Source="/Styles/SplitView.axaml"/>
+        <ResourceInclude Source="/Styles/FlyoutPresenter.axaml"/>
+        <ResourceInclude Source="/Styles/ToolTip.axaml"/>
+        <ResourceInclude Source="/Styles/UserControl.axaml"/>
+        <ResourceInclude Source="/Themes/PathIconEx.axaml"/>
+        <ResourceInclude Source="/Themes/Tag.axaml"/>
+        <ResourceInclude Source="/Themes/GroupBox.axaml"/>
+        <ResourceInclude Source="/Themes/Toast.axaml"/>
+        <ResourceInclude Source="/Themes/MessageBox.axaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

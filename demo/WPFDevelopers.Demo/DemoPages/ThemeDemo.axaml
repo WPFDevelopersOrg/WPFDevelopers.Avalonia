@@ -1,0 +1,67 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.ThemeDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPFDevelopers.Demo.DemoPages"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="16">
+        <Image
+                Width="120"
+                Height="120"
+                Margin="0,5"
+                Source="avares://WPFDevelopers.Demo/Assets/WPFDevelopers.ico" />
+        <TextBlock HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" Text="Theme" />
+
+       <ItemsControl x:Name="ColorItemsControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center" ItemSpacing="4" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="local:ColorOption">
+                        <RadioButton
+                            Width="25"
+                            Height="25"
+                            Margin="1"
+                            CornerRadius="30"
+                            GroupName="ColorGroup"
+                            IsCheckedChanged="OnColorRadioButtonChecked"
+                            Tag="{Binding}">
+                            <RadioButton.Template>
+                                <ControlTemplate>
+                                    <Border
+                                        Name="border"
+                                        Background="{Binding Color}"
+                                        BorderBrush="{DynamicResource WD.BaseBrush}"
+                                        BorderThickness="2"
+                                        CornerRadius="{TemplateBinding CornerRadius}">
+                                        <PathIcon
+                                            Width="14"
+                                            Height="14"
+                                            Data="M9 20.42l-6.21-6.21 2.83-2.83L9 14.77l9.88-9.88 2.83 2.83z"
+                                            Foreground="White"
+                                            IsVisible="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </Border>
+                                </ControlTemplate>
+                            </RadioButton.Template>
+                            <ToolTip.Tip>
+                                <TextBlock Text="{Binding Name}" />
+                            </ToolTip.Tip>
+                        </RadioButton>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        <StackPanel
+            HorizontalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="10">
+            <TextBlock VerticalAlignment="Center" Text="Theme:" />
+            <Button
+                Name="ThemeToggle"
+                Content="Switch to Dark"
+                Theme="{StaticResource wd-primary}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

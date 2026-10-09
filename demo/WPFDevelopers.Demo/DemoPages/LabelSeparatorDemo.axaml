@@ -1,0 +1,31 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.LabelSeparatorDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Label &amp; Separator" />
+        <StackPanel>
+                        <Label Content="Primary Label" Foreground="{DynamicResource WD.PrimaryBrush}" />
+                        <Label Content="Regular label" />
+                        <Label Margin="0,8,0,0" Content="HyperlinkButton">
+                            <Label.ContentTemplate>
+                                <DataTemplate>
+                                    <HyperlinkButton Content="{Binding}" NavigateUri="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia" />
+                                </DataTemplate>
+                            </Label.ContentTemplate>
+                        </Label>
+                        <Separator Margin="0,12" />
+                        <StackPanel
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Spacing="16">
+                            <Label Content="Inline label" />
+                            <Border
+                                Width="1"
+                                Height="16"
+                                Background="{DynamicResource WD.BaseBrush}" />
+                            <Label Content="After separator" />
+                        </StackPanel>
+                    </StackPanel>
+    </StackPanel>
+</UserControl>

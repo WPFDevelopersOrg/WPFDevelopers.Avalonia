@@ -1,0 +1,26 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.BadgeDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="16">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Badge" />
+       <WrapPanel>
+                        <Button
+                            Margin="16"
+                            wd:Badge.BadgeText="5"
+                            Content="Messages"
+                            Theme="{StaticResource wd-default}" />
+                        <Button
+                            Margin="16"
+                            wd:Badge.BadgeText="99+"
+                            Content="Notifications"
+                            Theme="{StaticResource wd-default}" />
+                        <Button
+                            Margin="16"
+                            wd:Badge.IsDot="True"
+                            Content="Dot Badge"
+                            Theme="{StaticResource wd-default}" />
+                    </WrapPanel>
+    </StackPanel>
+</UserControl>

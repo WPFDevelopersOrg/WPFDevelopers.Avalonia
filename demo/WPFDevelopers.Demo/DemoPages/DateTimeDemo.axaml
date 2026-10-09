@@ -1,0 +1,26 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.DateTimeDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="14">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Date &amp; Time" />
+         <StackPanel Spacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="16">
+                            <DatePicker Width="200" HorizontalAlignment="Left" />
+                            <Calendar />
+                            <CalendarDatePicker Width="200" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="16">
+                            <TimePicker Width="200" HorizontalAlignment="Left" />
+                            <TimePicker
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                UseSeconds="True" />
+                            <TimePicker
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                ClockIdentifier="12HourClock" />
+                        </StackPanel>
+                    </StackPanel>
+    </StackPanel>
+</UserControl>

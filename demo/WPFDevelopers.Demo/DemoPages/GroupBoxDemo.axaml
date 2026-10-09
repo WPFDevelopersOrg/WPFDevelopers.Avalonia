@@ -1,0 +1,15 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.GroupBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="GroupBox" />
+         <wd:GroupBox
+                    Width="500"
+                    HorizontalAlignment="Left"
+                    Header="Group Title">
+                    <TextBlock Margin="4" Text="This is the content of the GroupBox." />
+                </wd:GroupBox>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,17 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.NumericUpDownDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="NumericUpDown" />
+        <StackPanel Spacing="4">
+            <Label Content="NumericUpDown" />
+             <NumericUpDown
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            Maximum="1000"
+                            Minimum="0"
+                            Value="42" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,19 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.TagsDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Tags" />
+        <WrapPanel>
+                        <wd:Tag
+                            Margin="4"
+                            Close="Tag_Close"
+                            Content="Default Tag" />
+                        <wd:Tag
+                            Margin="4"
+                            Content="Non-closable"
+                            IsClose="False" />
+                    </WrapPanel>
+    </StackPanel>
+</UserControl>

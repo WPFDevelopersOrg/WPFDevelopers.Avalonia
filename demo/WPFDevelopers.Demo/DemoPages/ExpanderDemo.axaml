@@ -1,0 +1,45 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.ExpanderDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Expander" />
+         <UniformGrid
+                        Margin="0,10"
+                        ColumnSpacing="5"
+                        Columns="2"
+                        RowSpacing="5">
+                        <Expander Header="Expander">
+                            <Rectangle
+                                Width="400"
+                                Height="300"
+                                Fill="{DynamicResource WD.DangerBrush}" />
+                        </Expander>
+                        <Expander
+                            ExpandDirection="Up"
+                            FlowDirection="RightToLeft"
+                            Header="Expander1"
+                            IsExpanded="True">
+                            <Rectangle
+                                Width="400"
+                                Height="300"
+                                Fill="{DynamicResource WD.LightBrush}" />
+                        </Expander>
+                        <Expander ExpandDirection="Right" Header="Expander">
+                            <Rectangle
+                                Width="400"
+                                Height="300"
+                                Fill="{DynamicResource WD.SuccessMouseOverBrush}" />
+                        </Expander>
+                        <Expander
+                            ExpandDirection="Left"
+                            Header="Expander"
+                            IsExpanded="True">
+                            <Rectangle
+                                Width="400"
+                                Height="300"
+                                Fill="{DynamicResource WD.PrimaryBrush}" />
+                        </Expander>
+                    </UniformGrid>
+    </StackPanel>
+</UserControl>

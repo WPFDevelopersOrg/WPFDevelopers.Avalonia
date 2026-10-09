@@ -1,0 +1,34 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.DataGridDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPFDevelopers.Demo">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="DataGrid" />
+        <DataGrid
+                        Name="DemoDataGrid"
+                        Width="500"
+                        Height="200"
+                        HorizontalAlignment="Left"
+                        x:DataType="local:DemoItem">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="150"
+                                Binding="{Binding Name}"
+                                Header="Name" />
+                            <DataGridTextColumn
+                                Width="80"
+                                Binding="{Binding Age}"
+                                Header="Age" />
+                            <DataGridCheckBoxColumn
+                                Width="80"
+                                Binding="{Binding IsActive}"
+                                Header="Active" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Role}"
+                                Header="Role" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+    </StackPanel>
+</UserControl>

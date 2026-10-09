@@ -1,0 +1,18 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.ProgressDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="14">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Progress" />
+       <ProgressBar
+                            Width="400"
+                            HorizontalAlignment="Left"
+                            ShowProgressText="True"
+                            Value="60" />
+                        <ProgressBar
+                            Width="400"
+                            HorizontalAlignment="Left"
+                            IsIndeterminate="True"
+                            Value="20" />
+    </StackPanel>
+</UserControl>

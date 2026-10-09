@@ -1,0 +1,19 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.MaskDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Mask" />
+        <StackPanel Orientation="Horizontal" Spacing="32">
+                        <Label
+                            Width="100"
+                            Height="100"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            wd:Mask.IsShow="True"
+                            Background="{StaticResource WD.DangerBrush}"
+                            Content="Lable Mask" />
+                    </StackPanel>
+    </StackPanel>
+</UserControl>

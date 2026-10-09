@@ -1,0 +1,15 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.SliderDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Slider" />
+       <Slider
+                            Width="400"
+                            HorizontalAlignment="Left"
+                            Maximum="100"
+                            Minimum="0"
+                            Value="40" />
+    </StackPanel>
+</UserControl>

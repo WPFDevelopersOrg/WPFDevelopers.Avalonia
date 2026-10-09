@@ -1,0 +1,34 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.RepeatButtonDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="RepeatButton" />
+         <StackPanel
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                        <RepeatButton
+                            Name="RepeatDecrementBtn"
+                            Width="40"
+                            Height="40"
+                            Content="-"
+                            FontSize="18" />
+                        <TextBlock
+                            Name="RepeatValueText"
+                            Width="40"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="0"
+                            TextAlignment="Center" />
+                        <RepeatButton
+                            Name="RepeatIncrementBtn"
+                            Width="40"
+                            Height="40"
+                            FontSize="18">
+                            <wd:PathIconEx Kind="Add" />
+                        </RepeatButton>
+                    </StackPanel>
+    </StackPanel>
+</UserControl>

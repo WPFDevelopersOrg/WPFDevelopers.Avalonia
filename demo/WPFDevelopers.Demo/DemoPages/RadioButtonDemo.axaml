@@ -1,0 +1,14 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.RadioButtonDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="RadioButton" />
+         <RadioButton
+                            Content="Option A"
+                            GroupName="demo"
+                            IsChecked="True" />
+                        <RadioButton Content="Option B" GroupName="demo" />
+                        <RadioButton Content="Option C" GroupName="demo" />
+    </StackPanel>
+</UserControl>

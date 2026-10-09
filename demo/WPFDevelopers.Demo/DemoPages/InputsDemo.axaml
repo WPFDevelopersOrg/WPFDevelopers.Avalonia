@@ -1,0 +1,36 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.InputsDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="TextBox &amp; PasswordBox" />
+          <TextBox
+                        Width="200"
+                        MaxWidth="400"
+                        HorizontalAlignment="Left"
+                        Text=""
+                        Watermark="Enter text here..." />
+                    <TextBox
+                        Width="200"
+                        MaxWidth="400"
+                        HorizontalAlignment="Left"
+                        Classes="IsClear"
+                        Text=""
+                        Watermark="Clear text" />
+                    <TextBox
+                        Width="200"
+                        MaxWidth="400"
+                        HorizontalAlignment="Left"
+                        PasswordChar="●"
+                        RevealPassword="False"
+                        Watermark="Enter password here..." />
+                    <TextBox
+                        Width="200"
+                        MaxWidth="400"
+                        HorizontalAlignment="Left"
+                        Classes="IsClear"
+                        PasswordChar="●"
+                        RevealPassword="False"
+                        Watermark="Clear password" />
+    </StackPanel>
+</UserControl>

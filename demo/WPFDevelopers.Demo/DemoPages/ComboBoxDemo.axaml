@@ -1,0 +1,17 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.ComboBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="ComboBox" />
+         <ComboBox
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        SelectedIndex="0">
+                        <ComboBoxItem Content="Option 1" />
+                        <ComboBoxItem Content="Option 2" />
+                        <ComboBoxItem Content="Option 3" />
+                        <ComboBoxItem Content="Option 4" />
+                    </ComboBox>
+    </StackPanel>
+</UserControl>

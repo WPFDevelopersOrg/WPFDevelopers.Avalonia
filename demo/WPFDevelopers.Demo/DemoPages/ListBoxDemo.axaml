@@ -1,0 +1,20 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.ListBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="ListBox" />
+         <ListBox
+                        Width="200"
+                        Height="150"
+                        HorizontalAlignment="Left"
+                        SelectionMode="Single">
+                        <ListBoxItem Content="Item One" />
+                        <ListBoxItem Content="Item Two" IsSelected="True" />
+                        <ListBoxItem Content="Item Three" />
+                        <ListBoxItem Content="Item Four" />
+                        <ListBoxItem Content="Item Five" />
+                        <ListBoxItem Content="Item Six" />
+                    </ListBox>
+    </StackPanel>
+</UserControl>

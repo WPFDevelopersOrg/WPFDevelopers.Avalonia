@@ -1,0 +1,24 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.TreeViewDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="TreeView" />
+        <TreeView
+                        Width="250"
+                        Height="200"
+                        HorizontalAlignment="Left">
+                        <TreeViewItem Header="Root">
+                            <TreeViewItem Header="Child 1">
+                                <TreeViewItem Header="Grandchild 1.1" />
+                                <TreeViewItem Header="Grandchild 1.2" />
+                            </TreeViewItem>
+                            <TreeViewItem Header="Child 2" />
+                            <TreeViewItem Header="Child 3" IsExpanded="True">
+                                <TreeViewItem Header="Grandchild 3.1" />
+                                <TreeViewItem Header="Grandchild 3.2" />
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeView>
+    </StackPanel>
+</UserControl>

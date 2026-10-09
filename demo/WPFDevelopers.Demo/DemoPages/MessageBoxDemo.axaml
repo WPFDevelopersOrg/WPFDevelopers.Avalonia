@@ -1,0 +1,35 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.MessageBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="MessageBox" />
+        <WrapPanel>
+                        <Button
+                            Name="MsgBoxInfoBtn"
+                            Margin="4"
+                            Content="Info"
+                            Theme="{StaticResource wd-primary}" />
+                        <Button
+                            Name="MsgBoxWarningBtn"
+                            Margin="4"
+                            Content="Warning"
+                            Theme="{StaticResource wd-warning}" />
+                        <Button
+                            Name="MsgBoxErrorBtn"
+                            Margin="4"
+                            Content="Error"
+                            Theme="{StaticResource wd-danger}" />
+                        <Button
+                            Name="MsgBoxQuestionBtn"
+                            Margin="4"
+                            Content="Question"
+                            Theme="{StaticResource wd-success}" />
+                        <Button
+                            Name="MsgBoxYesNoCancelBtn"
+                            Margin="4"
+                            Content="YesNoCancel"
+                            Theme="{StaticResource wd-default}" />
+                    </WrapPanel>
+    </StackPanel>
+</UserControl>

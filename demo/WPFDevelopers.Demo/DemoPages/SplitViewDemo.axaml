@@ -1,0 +1,66 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.SplitViewDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="SplitView" />
+         <StackPanel
+                        Margin="0,0,0,8"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                        <Button
+                            Name="SplitViewToggleBtn"
+                            Content="Toggle Pane"
+                            Theme="{StaticResource wd-primary}" />
+                        <RadioButton
+                            Name="SplitViewCompactBtn"
+                            Content="Compact"
+                            GroupName="SplitViewMode"
+                            IsChecked="True" />
+                        <RadioButton
+                            Name="SplitViewOverlayBtn"
+                            Content="Overlay"
+                            GroupName="SplitViewMode" />
+                        <RadioButton
+                            Name="SplitViewInlineBtn"
+                            Content="Inline"
+                            GroupName="SplitViewMode" />
+                    </StackPanel>
+                    <SplitView
+                        x:Name="DemoSplitView"
+                        Width="400"
+                        Height="250"
+                        HorizontalAlignment="Left"
+                        DisplayMode="CompactOverlay"
+                        IsPaneOpen="True"
+                        OpenPaneLength="200">
+                        <SplitView.Pane>
+                            <StackPanel Background="{DynamicResource WD.BaseMoveBrush}">
+                                <TextBlock
+                                    Margin="8,0"
+                                    FontWeight="SemiBold"
+                                    Text="Pane" />
+                                <Button
+                                    Margin="0,2"
+                                    Content="Home"
+                                    Theme="{StaticResource wd-normal}" />
+                                <Button
+                                    Margin="0,2"
+                                    Content="Settings"
+                                    Theme="{StaticResource wd-normal}" />
+                                <Button
+                                    Margin="0,2"
+                                    Content="About"
+                                    Theme="{StaticResource wd-normal}" />
+                            </StackPanel>
+                        </SplitView.Pane>
+                        <Border Padding="16" Background="{DynamicResource WD.LightBrush}">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Text="Main Content" />
+                        </Border>
+                    </SplitView>
+    </StackPanel>
+</UserControl>

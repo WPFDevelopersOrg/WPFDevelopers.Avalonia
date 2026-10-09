@@ -1,0 +1,52 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.ButtonsDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Buttons" />
+         <WrapPanel>
+                        <Button Margin="4" Content="Primary" />
+                        <Button
+                            Width="40"
+                            Height="40"
+                            Margin="4"
+                            wd:ElementHelper.IsRound="True"
+                            Content="Round"
+                            Theme="{StaticResource wd-primary}" />
+                        <Button
+                            Margin="4"
+                            Content="Default"
+                            Theme="{StaticResource wd-default}" />
+                        <Button
+                            Margin="4"
+                            Content="Normal"
+                            Theme="{StaticResource wd-normal}" />
+                        <Button
+                            Margin="4"
+                            wd:Loading.IsShow="True"
+                            Content="Success"
+                            Theme="{StaticResource wd-success}" />
+                        <Button
+                            Margin="4"
+                            Content="Warning"
+                            Theme="{StaticResource wd-warning}" />
+                        <Button
+                            Margin="4"
+                            Content="Danger"
+                            Theme="{StaticResource wd-danger}" />
+                        <Button
+                            Margin="4"
+                            Content="Filled Success"
+                            Theme="{StaticResource wd-success-filled}" />
+                        <Button
+                            Margin="4"
+                            Content="Filled Warning"
+                            Theme="{StaticResource wd-warning-filled}" />
+                        <Button
+                            Margin="4"
+                            Content="Filled Danger"
+                            Theme="{StaticResource wd-danger-filled}" />
+                    </WrapPanel>
+    </StackPanel>
+</UserControl>

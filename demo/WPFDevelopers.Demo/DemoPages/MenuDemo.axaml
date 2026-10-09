@@ -1,0 +1,25 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.MenuDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Menu" />
+         <Menu>
+                        <MenuItem Header="File">
+                            <MenuItem Header="New" />
+                            <MenuItem Header="Open" />
+                            <MenuItem Header="Save" />
+                            <Separator />
+                            <MenuItem Header="Exit" />
+                        </MenuItem>
+                        <MenuItem Header="Edit">
+                            <MenuItem Header="Cut" />
+                            <MenuItem Header="Copy" />
+                            <MenuItem Header="Paste" />
+                        </MenuItem>
+                        <MenuItem Header="Help">
+                            <MenuItem Header="About" />
+                        </MenuItem>
+                    </Menu>
+    </StackPanel>
+</UserControl>

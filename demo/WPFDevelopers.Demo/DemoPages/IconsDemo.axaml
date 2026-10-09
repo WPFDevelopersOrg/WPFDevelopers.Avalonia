@@ -1,0 +1,89 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.IconsDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Icons" />
+        <WrapPanel>
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.PrimaryBrush}"
+                            Kind="Home" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.SuccessBrush}"
+                            Kind="CheckMark" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.WarningBrush}"
+                            Kind="Warning" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.DangerBrush}"
+                            Kind="Error" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.PrimaryBrush}"
+                            Kind="Info" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.WarningBrush}"
+                            Kind="Star" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.PrimaryBrush}"
+                            Kind="Add" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.RegularTextBrush}"
+                            Kind="Time" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.RegularTextBrush}"
+                            Kind="DatePicker" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.RegularTextBrush}"
+                            Kind="Copy" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.RegularTextBrush}"
+                            Kind="Undo" />
+                        <wd:PathIconEx
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Foreground="{DynamicResource WD.RegularTextBrush}"
+                            Kind="Filter" />
+                        <PathIcon
+                            Width="24"
+                            Height="24"
+                            Margin="4"
+                            Data="{StaticResource WD.CheckMarkGeometry}"
+                            Foreground="{DynamicResource WD.SuccessBrush}" />
+                    </WrapPanel>
+    </StackPanel>
+</UserControl>

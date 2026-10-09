@@ -1,0 +1,27 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.ContextMenuDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="ContextMenu" />
+          <Button
+                        Width="250"
+                        HorizontalAlignment="Left"
+                        Content="Right-click me for ContextMenu"
+                        Theme="{StaticResource wd-default}">
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy" />
+                                <MenuItem Header="Paste" />
+                                <MenuItem Header="Cut" />
+                                <Separator />
+                                <MenuItem Header="Select All" />
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource WD.RegularTextBrush}"
+                        Text="Right-click any control to see its ContextMenu" />
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,22 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.TabControlDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="TabControl" />
+        <TabControl
+                        Width="400"
+                        Height="150"
+                        HorizontalAlignment="Left">
+                        <TabItem Header="General">
+                            <TextBlock Margin="8" Text="General settings content" />
+                        </TabItem>
+                        <TabItem Header="Advanced">
+                            <TextBlock Margin="8" Text="Advanced settings content" />
+                        </TabItem>
+                        <TabItem Header="About">
+                            <TextBlock Margin="8" Text="About this application" />
+                        </TabItem>
+                    </TabControl>
+    </StackPanel>
+</UserControl>

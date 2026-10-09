@@ -11,7 +11,7 @@ namespace WPFDevelopers.Avalonia.Controls
         private static readonly ConcurrentDictionary<Window, ToastLayer> _windowLayers = new();
         private static Position _position = Position.Top;
 
-        static ToastLayer GetOrCreateLayer(Window window)
+        static ToastLayer? GetOrCreateLayer(Window window)
         {
             if (!_windowLayers.TryGetValue(window, out var layer))
             {

@@ -3,6 +3,7 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 /src/OutPut
+/Output
 /src/WPFDevelopers.Minimal/.vs
 /src/WPFDevelopers.Minimal/Wpf45
 /src/WPFDevelopers.Minimal/WPFDevelopers.Minimal.Net45x/bin

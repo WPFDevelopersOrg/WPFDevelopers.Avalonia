@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>WPFDevelopers.Demo</RootNamespace>
@@ -14,14 +14,22 @@
 
 	<ItemGroup>
 		<None Remove="Assets\WPFDevelopers.png" />
+		<AvaloniaResource Include="Assets\**\*" />
 		<AvaloniaResource Include="Assets\WPFDevelopers.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia" Version="11.3.0" />
-		<PackageReference Include="Avalonia.Desktop" Version="11.3.0" />
-		<PackageReference Include="Avalonia.Diagnostics" Version="11.3.0" Condition="'$(Configuration)' == 'Debug'" />
-		<PackageReference Include="WPFDevelopers.Avalonia" Version="11.3.0-preview2" />
-		<!-- <PackageReference Include="WPFDevelopers.Avalonia" Version="11.3.0-preview1" /> -->
+		<EmbeddedResource Include="DemoPages\*.axaml;DemoPages\*.axaml.cs">
+			<LogicalName>WPFDevelopers.Demo.DemoPages.%(Filename)%(Extension)</LogicalName>
+		</EmbeddedResource>
 	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="12.1.2" />
+		<PackageReference Include="Avalonia.Desktop" Version="12.1.2" />
+		<PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" />
+		<PackageReference Include="Svg.Controls.Avalonia" Version="12.0.0.17" />
+		<PackageReference Include="WPFDevelopers.Avalonia" Version="12.1.2-preview" />
+	</ItemGroup>
+
 </Project>

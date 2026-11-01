@@ -12,24 +12,6 @@
 
 An Avalonia 12.1.2 UI component library with a rich collection of control themes and practical controls. Both the library and the demo app target .NET 8, .NET 9, and .NET 10. Applications using the library must use a compatible Avalonia 12 version. Building the multi-targeted projects requires the .NET 10 SDK or later.
 
-### Build and Run the Demo
-
-Build all three frameworks from the repository root:
-
-```powershell
-dotnet build .\demo\WPFDevelopers.Demo\WPFDevelopers.Demo.csproj -c Release
-```
-
-The demo executables are generated in `Output\net8.0`, `Output\net9.0`, and `Output\net10.0`. All three share the same source code and reference the matching library target. Install the corresponding .NET runtime and specify `--framework` when running:
-
-```powershell
-dotnet run --project .\demo\WPFDevelopers.Demo\WPFDevelopers.Demo.csproj --framework net8.0 -c Release
-dotnet run --project .\demo\WPFDevelopers.Demo\WPFDevelopers.Demo.csproj --framework net9.0 -c Release
-dotnet run --project .\demo\WPFDevelopers.Demo\WPFDevelopers.Demo.csproj --framework net10.0 -c Release
-```
-
-The demo title bar displays `WPFDevelopers Demo · v<version>`. It shares the home page's version source: the loaded control library's assembly informational version, preserving prerelease labels and omitting build metadata after `+`.
-
 ### WPF Version
 
 Using WPF as well? Check out **WPFDevelopers**, which provides a rich collection of controls and practical examples for Windows desktop apps. The demo home page also includes a link to the WPF version.

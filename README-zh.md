@@ -12,24 +12,6 @@
 
 基于 Avalonia 12.1.2 的 UI 组件库，提供丰富的控件主题和实用控件。控件库和示例程序均支持 .NET 8、.NET 9 和 .NET 10；使用方应用需采用兼容的 Avalonia 12 版本。构建多目标项目需安装 .NET 10 SDK 或更新版本。
 
-### 构建和运行示例
-
-在仓库根目录执行以下命令，一次构建三个框架的示例：
-
-```powershell
-dotnet build .\demo\WPFDevelopers.Demo\WPFDevelopers.Demo.csproj -c Release
-```
-
-示例可执行文件分别生成在 `Output\net8.0`、`Output\net9.0` 和 `Output\net10.0`，共用同一套源代码，并引用对应目标框架的控件库。运行时需安装对应的 .NET 运行时，并通过 `--framework` 指定版本：
-
-```powershell
-dotnet run --project .\demo\WPFDevelopers.Demo\WPFDevelopers.Demo.csproj --framework net8.0 -c Release
-dotnet run --project .\demo\WPFDevelopers.Demo\WPFDevelopers.Demo.csproj --framework net9.0 -c Release
-dotnet run --project .\demo\WPFDevelopers.Demo\WPFDevelopers.Demo.csproj --framework net10.0 -c Release
-```
-
-Demo 标题栏显示 `WPFDevelopers Demo · v<版本号>`，与首页共用实际加载的控件库程序集版本，保留预发布标识，并省略 `+` 后的构建元数据。
-
 ### WPF 版本
 
 也在使用 WPF？欢迎体验 **WPFDevelopers**，为 Windows 桌面应用提供丰富的控件与实用示例。Demo 首页也提供独立的 WPF 版本入口。

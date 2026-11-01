@@ -7,11 +7,13 @@
         <Setter Property="Height" Value="16" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Path Data="{TemplateBinding Data}"
-                      Fill="{TemplateBinding Foreground}"
-                      Width="{TemplateBinding Width}"
-                      Height="{TemplateBinding Height}"
-                      Stretch="Uniform"/>
+                <Viewbox HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Stretch="Uniform">
+                    <Path Data="{TemplateBinding Data}"
+                          Fill="{TemplateBinding Foreground}"
+                          Stretch="Uniform" />
+                </Viewbox>
             </ControlTemplate>
         </Setter>
     </ControlTheme>

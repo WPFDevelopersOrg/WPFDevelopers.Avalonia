@@ -1,0 +1,53 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.SplitButtonDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPFDevelopers.Demo.DemoPages"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
+    x:DataType="local:SplitButtonDemo">
+    <StackPanel Spacing="14">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="SplitButton" />
+        <TextBlock Text="Click the main button to execute, or choose an action from the dropdown."
+                   TextWrapping="Wrap" />
+        <TextBlock Text="Default variants" />
+        <WrapPanel>
+            <wd:SplitButton Width="130" Margin="4" Content="Default"
+                            ItemsSource="{Binding MenuItems}"
+                            Click="OnMainClick" SelectionChanged="OnSelectionChanged" />
+            <wd:SplitButton Width="130" Margin="4" Content="Success"
+                            Theme="{StaticResource WD.SplitButtonSuccess}"
+                            ItemsSource="{Binding MenuItems}"
+                            Click="OnMainClick" SelectionChanged="OnSelectionChanged" />
+            <wd:SplitButton Width="130" Margin="4" Content="Warning"
+                            Theme="{StaticResource WD.SplitButtonWarning}"
+                            ItemsSource="{Binding MenuItems}"
+                            Click="OnMainClick" SelectionChanged="OnSelectionChanged" />
+            <wd:SplitButton Width="130" Margin="4" Content="Danger"
+                            Theme="{StaticResource WD.SplitButtonDanger}"
+                            ItemsSource="{Binding MenuItems}"
+                            Click="OnMainClick" SelectionChanged="OnSelectionChanged" />
+        </WrapPanel>
+        <TextBlock Text="Primary variants" />
+        <WrapPanel>
+            <wd:SplitButton Width="130" Margin="4" Content="Primary"
+                            Theme="{StaticResource WD.SplitButtonPrimary}"
+                            ItemsSource="{Binding MenuItems}"
+                            Click="OnMainClick" SelectionChanged="OnSelectionChanged" />
+            <wd:SplitButton Width="130" Margin="4" Content="Success"
+                            Theme="{StaticResource WD.SplitButtonSuccessPrimary}"
+                            ItemsSource="{Binding MenuItems}"
+                            Click="OnMainClick" SelectionChanged="OnSelectionChanged" />
+            <wd:SplitButton Width="130" Margin="4" Content="Warning"
+                            Theme="{StaticResource WD.SplitButtonWarningPrimary}"
+                            ItemsSource="{Binding MenuItems}"
+                            Click="OnMainClick" SelectionChanged="OnSelectionChanged" />
+            <wd:SplitButton Width="130" Margin="4" Content="Danger"
+                            Theme="{StaticResource WD.SplitButtonDangerPrimary}"
+                            ItemsSource="{Binding MenuItems}"
+                            Click="OnMainClick" SelectionChanged="OnSelectionChanged" />
+        </WrapPanel>
+        <TextBlock x:Name="StatusText"
+                   Text="Choose an action to see the event result."
+                   TextWrapping="Wrap" />
+    </StackPanel>
+</UserControl>

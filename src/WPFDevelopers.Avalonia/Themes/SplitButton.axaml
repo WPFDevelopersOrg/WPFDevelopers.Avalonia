@@ -1,0 +1,229 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <ControlTheme x:Key="WD.SplitButton" TargetType="wd:SplitButton">
+        <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource WD.BaseBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{DynamicResource WD.CornerRadius}" />
+        <Setter Property="Foreground" Value="{DynamicResource WD.RegularTextBrush}" />
+        <Setter Property="Padding" Value="{DynamicResource WD.Padding}" />
+        <Setter Property="MinHeight" Value="{DynamicResource WD.Height}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Name="PART_Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid ClipToBounds="False" ColumnDefinitions="*,30">
+                    <ContentPresenter Name="PART_ContentPresenter"
+                                      Grid.Column="0"
+                                      Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Foreground="{TemplateBinding Foreground}" />
+                    <Border Grid.Column="0"
+                            Width="1"
+                            Margin="0,4"
+                            HorizontalAlignment="Right"
+                            Background="{TemplateBinding Foreground}"
+                            IsHitTestVisible="False" />
+                    <ToggleButton Name="PART_ToggleButton"
+                                  Grid.Column="1"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  Padding="0"
+                                  Focusable="False"
+                                  IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                        <ToggleButton.Theme>
+                            <ControlTheme TargetType="ToggleButton">
+                                <Setter Property="Template">
+                                    <ControlTemplate>
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter Name="PART_ContentPresenter"
+                                                              HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"
+                                                              Content="{TemplateBinding Content}" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter>
+                            </ControlTheme>
+                        </ToggleButton.Theme>
+                        <PathIcon Name="PART_Arrow"
+                                  Width="10"
+                                  Height="6"
+                                  Data="{DynamicResource WD.ChevronDownGeometry}"
+                                  Foreground="{TemplateBinding Foreground}"
+                                  IsHitTestVisible="False"
+                                  RenderTransform="rotate(0deg)">
+                            <PathIcon.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+                                </Transitions>
+                            </PathIcon.Transitions>
+                        </PathIcon>
+                    </ToggleButton>
+                    <Popup Name="PART_Popup"
+                           Grid.ColumnSpan="2"
+                           IsOpen="{TemplateBinding IsDropDownOpen, Mode=TwoWay}"
+                           IsLightDismissEnabled="True"
+                           Placement="Bottom"
+                           PlacementTarget="{TemplateBinding}">
+                        <Border MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                                Background="{DynamicResource WD.BackgroundBrush}"
+                                BorderBrush="{DynamicResource WD.BaseBrush}"
+                                BorderThickness="1"
+                                BoxShadow="{DynamicResource WD.MessageBoxShadow}"
+                                CornerRadius="{DynamicResource WD.CornerRadius}">
+                            <ListBox Name="PART_Menu"
+                                     ItemsSource="{TemplateBinding ItemsSource}"
+                                     ItemTemplate="{TemplateBinding ItemTemplate}"
+                                     Background="Transparent"
+                                     Foreground="{DynamicResource WD.RegularTextBrush}"
+                                     BorderThickness="0"
+                                     MaxHeight="300"
+                                     SelectionMode="Single" />
+                        </Border>
+                    </Popup>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^[IsDropDownOpen=true] /template/ PathIcon#PART_Arrow">
+            <Setter Property="RenderTransform">
+                <TransformOperations>rotate(180deg)</TransformOperations>
+            </Setter>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="WD.SplitButtonDefault"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButton}">
+        <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource WD.BaseBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource WD.RegularTextBrush}" />
+        <Style Selector="^:pointerover">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.PrimaryBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.PrimaryMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.PrimaryBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.PrimaryMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+        <Style Selector="^:focus">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.PrimaryBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.PrimaryMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="WD.SplitButtonPrimary"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButton}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="{DynamicResource WD.PrimaryBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource WD.WindowTextBrush}" />
+        <Style Selector="^:pointerover">
+            <Setter Property="Opacity" Value="0.9" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Opacity" Value="0.9" />
+        </Style>
+        <Style Selector="^:focus">
+            <Setter Property="Opacity" Value="0.9" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="WD.SplitButtonSuccess"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButton}">
+        <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource WD.BaseBrush}" />
+        <Style Selector="^:pointerover">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.SuccessBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.SuccessMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.SuccessBrush}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.SuccessBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.SuccessMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.SuccessBrush}" />
+        </Style>
+        <Style Selector="^:focus">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.SuccessBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.SuccessMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.SuccessBrush}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="WD.SplitButtonWarning"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButton}">
+        <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource WD.BaseBrush}" />
+        <Style Selector="^:pointerover">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.WarningBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.WarningMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.WarningBrush}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.WarningBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.WarningMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.WarningBrush}" />
+        </Style>
+        <Style Selector="^:focus">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.WarningBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.WarningMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.WarningBrush}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="WD.SplitButtonDanger"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButton}">
+        <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource WD.BaseBrush}" />
+        <Style Selector="^:pointerover">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.DangerBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.DangerMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.DangerBrush}" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.DangerBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.DangerMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.DangerBrush}" />
+        </Style>
+        <Style Selector="^:focus">
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.DangerBrush}" />
+            <Setter Property="Background" Value="{DynamicResource WD.DangerMouseOverBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.DangerBrush}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="WD.SplitButtonSuccessPrimary"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButtonPrimary}">
+        <Setter Property="Background" Value="{DynamicResource WD.SuccessBrush}" />
+    </ControlTheme>
+    <ControlTheme x:Key="WD.SplitButtonWarningPrimary"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButtonPrimary}">
+        <Setter Property="Background" Value="{DynamicResource WD.WarningBrush}" />
+    </ControlTheme>
+    <ControlTheme x:Key="WD.SplitButtonDangerPrimary"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButtonPrimary}">
+        <Setter Property="Background" Value="{DynamicResource WD.DangerBrush}" />
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type wd:SplitButton}"
+                  TargetType="wd:SplitButton"
+                  BasedOn="{StaticResource WD.SplitButtonDefault}" />
+</ResourceDictionary>

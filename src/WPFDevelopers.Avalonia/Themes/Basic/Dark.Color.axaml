@@ -9,6 +9,11 @@
     <Color x:Key="WD.RegularTextColor">#C0C4CC</Color>
     <SolidColorBrush x:Key="WD.RegularTextBrush" Color="{StaticResource WD.RegularTextColor}" />
 
+    <Color x:Key="WD.ScrollBarThumbColor">#606266</Color>
+    <SolidColorBrush x:Key="WD.ScrollBarThumbBrush" Color="{StaticResource WD.ScrollBarThumbColor}" />
+    <Color x:Key="WD.ScrollBarThumbPointerOverColor">#909399</Color>
+    <SolidColorBrush x:Key="WD.ScrollBarThumbPointerOverBrush" Color="{StaticResource WD.ScrollBarThumbPointerOverColor}" />
+
     <Color x:Key="WD.BackgroundColor">#323232</Color>
     <SolidColorBrush x:Key="WD.BackgroundBrush" Color="{StaticResource WD.BackgroundColor}" />
 

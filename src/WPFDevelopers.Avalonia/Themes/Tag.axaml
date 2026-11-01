@@ -38,6 +38,40 @@
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^.badge">
+            <Setter Property="IsClose" Value="False" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="{DynamicResource WD.PrimaryBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Padding" Value="7,3" />
+            <Setter Property="CornerRadius" Value="3" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            ClipToBounds="True">
+                        <Grid ColumnDefinitions="Auto,Auto">
+                            <Border Background="{TemplateBinding LabelBackground}">
+                                <TextBlock Margin="{TemplateBinding Padding}"
+                                           VerticalAlignment="Center"
+                                           Foreground="{TemplateBinding LabelForeground}"
+                                           Text="{TemplateBinding Label}" />
+                            </Border>
+                            <ContentPresenter Name="PART_Content"
+                                              Grid.Column="1"
+                                              Margin="{TemplateBinding Padding}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
     </ControlTheme>
 
 </ResourceDictionary>

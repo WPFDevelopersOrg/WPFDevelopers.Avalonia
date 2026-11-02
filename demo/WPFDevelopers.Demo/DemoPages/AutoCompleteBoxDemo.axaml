@@ -9,6 +9,6 @@
                         Width="200"
                         HorizontalAlignment="Left"
                         FilterMode="Contains"
-                        Watermark="Search..." />
+                        PlaceholderText="Search..." />
     </StackPanel>
 </UserControl>

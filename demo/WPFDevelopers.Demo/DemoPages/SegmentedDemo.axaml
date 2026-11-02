@@ -1,0 +1,23 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.SegmentedDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Segmented" />
+        <wd:Segmented CornerRadius="10" SelectedIndex="1">
+            <wd:SegmentedItem Content="Day" />
+            <wd:SegmentedItem Content="Week" />
+            <wd:SegmentedItem Content="Month" />
+        </wd:Segmented>
+        <wd:Segmented
+            HorizontalAlignment="Left"
+            CornerRadius="4"
+            Orientation="Vertical"
+            SelectedIndex="0">
+            <wd:SegmentedItem Content="Overview" />
+            <wd:SegmentedItem Content="Activity" />
+            <wd:SegmentedItem Content="Settings" />
+        </wd:Segmented>
+    </StackPanel>
+</UserControl>

@@ -15,5 +15,14 @@
                             Content="Non-closable"
                             IsClose="False" />
                     </WrapPanel>
+        <TextBlock FontWeight="SemiBold" Text="README Badge（徽章）" />
+        <WrapPanel>
+            <wd:Tag Margin="4" Classes="badge" Label="version" Content="11.3.0" Background="#E05D44" />
+            <wd:Tag Margin="4" Classes="badge" Label="stars" Content="1,234" Background="#DFB317" />
+            <wd:Tag Margin="4" Classes="badge" Label="downloads" Content="12,345" Background="#007EC6" />
+            <wd:Tag Margin="4" Classes="badge" Label="license" Content="MIT" Background="#4C1" />
+            <wd:Tag Margin="4" Classes="badge" Label="custom" Content="label colors"
+                    LabelBackground="#24292F" LabelForeground="#FFD166" Background="#8250DF" />
+        </WrapPanel>
     </StackPanel>
 </UserControl>

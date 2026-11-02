@@ -1,0 +1,14 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.GestureUnlockDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="GestureUnlock" />
+        <TextBlock Text="绘制图案0→ 4 → 2 → 6 解锁。" />
+        <wd:GestureUnlock x:Name="Unlock"
+                          HorizontalAlignment="Left"
+                          Completed="OnGestureCompleted" />
+        <TextBlock x:Name="ResultText" />
+    </StackPanel>
+</UserControl>

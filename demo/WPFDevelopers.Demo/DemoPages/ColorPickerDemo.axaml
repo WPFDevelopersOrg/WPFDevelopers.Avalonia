@@ -1,0 +1,20 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.ColorPickerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <ScrollViewer>
+        <StackPanel Spacing="12">
+            <TextBlock FontSize="18" FontWeight="SemiBold" Text="ColorPicker" />
+            <TextBlock Text="点击色块弹出调色板，在底部下拉框选择 RGB / HSL / HEX 输入格式。" TextWrapping="Wrap" />
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <wd:ColorPicker DisplayMode="Popup"
+                                SelectedColor="{Binding SelectedColor, ElementName=InlinePicker, Mode=TwoWay}" />
+                <wd:ColorPicker DisplayMode="Popup" ShowColorText="True"
+                                SelectedColor="{Binding SelectedColor, ElementName=InlinePicker, Mode=TwoWay}" />
+            </StackPanel>
+            <TextBlock Text="内嵌调色板（与上方触发器同步）" />
+            <wd:ColorPicker Name="InlinePicker" SelectedColor="#FF1677FF" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

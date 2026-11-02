@@ -6,19 +6,26 @@
         <TextBlock FontSize="18" FontWeight="SemiBold" Text="Date &amp; Time" />
          <StackPanel Spacing="12">
                         <StackPanel Orientation="Horizontal" Spacing="16">
-                            <DatePicker Width="200" HorizontalAlignment="Left" />
+                            <DatePicker Width="200"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top" />
                             <Calendar />
-                            <CalendarDatePicker Width="200" />
+                            <CalendarDatePicker Width="200"
+                                                VerticalAlignment="Top" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Spacing="16">
-                            <TimePicker Width="200" HorizontalAlignment="Left" />
+                            <TimePicker Width="200"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top" />
                             <TimePicker
                                 Width="200"
                                 HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
                                 UseSeconds="True" />
                             <TimePicker
                                 Width="200"
                                 HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
                                 ClockIdentifier="12HourClock" />
                         </StackPanel>
                     </StackPanel>

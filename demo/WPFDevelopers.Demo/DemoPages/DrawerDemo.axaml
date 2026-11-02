@@ -1,0 +1,124 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.DrawerDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <Grid RowDefinitions="Auto,*">
+        <StackPanel Margin="0,0,0,12" Spacing="4">
+            <TextBlock FontSize="20" FontWeight="SemiBold" Text="Drawer" />
+            <TextBlock Foreground="{DynamicResource WD.RegularTextBrush}"
+                       Text="测试四个方向的抽屉；点击遮罩区域关闭。" />
+        </StackPanel>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,*"
+              RowDefinitions="*,*">
+            <wd:Drawer x:Name="TopDrawer"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Margin="3"
+                       Position="Top">
+                <wd:Drawer.Header>
+                    <Grid Height="120">
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Spacing="8">
+                            <TextBlock FontSize="18" Text="Top drawer" />
+                            <Button HorizontalAlignment="Center" Content="Header content" />
+                        </StackPanel>
+                    </Grid>
+                </wd:Drawer.Header>
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Spacing="8" Margin="0,0,0,12">
+                    <TextBlock Text="抽屉从顶部滑出，点击遮罩区关闭。" />
+                    <Button HorizontalAlignment="Center"
+                            Click="OnTopOpenClick"
+                            Content="Open top drawer" />
+                </StackPanel>
+            </wd:Drawer>
+
+            <wd:Drawer x:Name="BottomDrawer"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Margin="3"
+                       Position="Bottom">
+                <wd:Drawer.Header>
+                    <Grid Height="130">
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Spacing="8">
+                            <TextBlock FontSize="18" Text="Bottom drawer" />
+                            <Button HorizontalAlignment="Center"
+                                    Content="Header content"
+                                    Theme="{StaticResource wd-danger}" />
+                        </StackPanel>
+                    </Grid>
+                </wd:Drawer.Header>
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="8">
+                    <TextBlock Text="抽屉从底部滑出，点击遮罩区关闭。" />
+                    <Button HorizontalAlignment="Center"
+                            Click="OnBottomOpenClick"
+                            Content="Open bottom drawer"
+                            Theme="{StaticResource wd-danger-filled}" />
+                </StackPanel>
+            </wd:Drawer>
+
+            <wd:Drawer x:Name="LeftDrawer"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Margin="3"
+                       Position="Left">
+                <wd:Drawer.Header>
+                    <Grid Width="180" Background="HotPink">
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Spacing="8">
+                            <TextBlock FontSize="18" Text="Left drawer" />
+                            <Button HorizontalAlignment="Center"
+                                    Content="Header content"
+                                    Theme="{StaticResource wd-success}" />
+                        </StackPanel>
+                    </Grid>
+                </wd:Drawer.Header>
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="8">
+                    <TextBlock Text="抽屉从左侧滑出，点击遮罩区关闭。" />
+                    <Button HorizontalAlignment="Center"
+                            Click="OnLeftOpenClick"
+                            Content="Open left drawer"
+                            Theme="{StaticResource wd-success-filled}" />
+                </StackPanel>
+            </wd:Drawer>
+
+            <wd:Drawer x:Name="RightDrawer"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Margin="3"
+                       Position="Right">
+                <wd:Drawer.Header>
+                    <Grid Width="160">
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Spacing="8">
+                            <TextBlock FontSize="18" Text="Right drawer" />
+                            <Button HorizontalAlignment="Center" Content="Header content" />
+                        </StackPanel>
+                    </Grid>
+                </wd:Drawer.Header>
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="8">
+                    <TextBlock Text="抽屉从右侧滑出，点击遮罩区关闭。" />
+                    <Button HorizontalAlignment="Center"
+                            Click="OnRightOpenClick"
+                            Content="Open right drawer"
+                            Theme="{StaticResource wd-warning-filled}" />
+                </StackPanel>
+            </wd:Drawer>
+        </Grid>
+    </Grid>
+</UserControl>

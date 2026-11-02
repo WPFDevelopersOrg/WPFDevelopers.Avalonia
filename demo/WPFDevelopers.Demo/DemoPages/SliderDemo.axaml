@@ -5,11 +5,21 @@
     xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
     <StackPanel Spacing="12">
         <TextBlock FontSize="18" FontWeight="SemiBold" Text="Slider" />
-       <Slider
-                            Width="400"
-                            HorizontalAlignment="Left"
-                            Maximum="100"
-                            Minimum="0"
-                            Value="40" />
+        <TextBlock Margin="0,10,0,0" FontSize="16" Text="Horizontal" />
+        <Slider
+            Width="400"
+            HorizontalAlignment="Left"
+            Maximum="100"
+            Minimum="0"
+            Value="40" />
+
+        <TextBlock Margin="0,8,0,0" FontSize="16" Text="Vertical" />
+        <Slider
+            Height="200"
+            HorizontalAlignment="Left"
+            Maximum="100"
+            Minimum="0"
+            Orientation="Vertical"
+            Value="40" />
     </StackPanel>
 </UserControl>

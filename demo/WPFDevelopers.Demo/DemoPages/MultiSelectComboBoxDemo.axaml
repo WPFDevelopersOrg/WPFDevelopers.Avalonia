@@ -1,0 +1,54 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.MultiSelectComboBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPFDevelopers.Demo"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="MultiSelectComboBox" />
+
+        <wd:MultiSelectComboBox
+            x:Name="TextModeCombo"
+            Width="320"
+            HorizontalAlignment="Left"
+            PlaceholderText="Select team members"
+            SearchWatermark="Search by name"
+            SelectionMode="Multiple"
+            SelectAllContent="Select All"
+            Delimiter=", "
+            DisplayMemberPath="Name" />
+
+        <wd:MultiSelectComboBox
+            x:Name="TagModeCombo"
+            Width="320"
+            HorizontalAlignment="Left"
+            PlaceholderText="Tag mode"
+            SearchWatermark="Type to filter"
+            SelectionMode="Multiple"
+            SelectAllContent="Select All"
+            ShowType="Tag"
+            DisplayMemberPath="Name" />
+
+        <TextBlock FontSize="16" FontWeight="SemiBold" Text="Multi-column ItemTemplate" />
+
+        <wd:MultiSelectComboBox
+            x:Name="MultiColumnCombo"
+            Width="320"
+            HorizontalAlignment="Left"
+            PlaceholderText="Select users"
+            SearchWatermark="Search users"
+            SelectionMode="Multiple"
+            SelectAllContent="Select All"
+            DisplayMemberPath="Name">
+            <wd:MultiSelectComboBox.ItemTemplate>
+                <DataTemplate x:DataType="local:DemoItem">
+                    <Grid ColumnDefinitions="2*,Auto,2*" ColumnSpacing="12">
+                        <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Age}" HorizontalAlignment="Right" />
+                        <TextBlock Grid.Column="2" Text="{Binding Role}" />
+                    </Grid>
+                </DataTemplate>
+            </wd:MultiSelectComboBox.ItemTemplate>
+        </wd:MultiSelectComboBox>
+    </StackPanel>
+</UserControl>

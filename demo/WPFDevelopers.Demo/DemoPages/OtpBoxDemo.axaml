@@ -1,0 +1,33 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.OtpBoxDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <ScrollViewer>
+        <StackPanel Spacing="12">
+            <TextBlock FontSize="18" FontWeight="SemiBold" Text="OtpBox" />
+            <TextBlock Text="Only digits are accepted. Use Ctrl+V to paste a code, arrow keys to navigate, and Backspace to delete."
+                       TextWrapping="Wrap" />
+
+            <TextBlock FontWeight="SemiBold" Text="4-digit verification" />
+            <TextBlock Text="Enter 1234 to succeed. An incorrect code is cleared after 1.5 seconds."
+                       TextWrapping="Wrap" />
+            <wd:OtpBox x:Name="VerificationCode"
+                       HorizontalAlignment="Left"
+                       Completed="OnVerificationCompleted" />
+            <TextBlock x:Name="VerificationResult" TextWrapping="Wrap" />
+
+            <TextBlock Margin="0,12,0,0" FontWeight="SemiBold" Text="6-digit code with custom sizing" />
+            <wd:OtpBox x:Name="CustomCode"
+                       HorizontalAlignment="Left"
+                       Length="6"
+                       BoxWidth="36"
+                       BoxHeight="44"
+                       Spacing="6"
+                       FontSize="20"
+                       Completed="OnCustomCodeCompleted" />
+            <TextBlock x:Name="CustomCodeResult" TextWrapping="Wrap" />
+            <Button HorizontalAlignment="Left" Content="Clear codes" Click="OnClearCodesClick" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

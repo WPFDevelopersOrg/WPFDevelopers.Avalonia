@@ -1,0 +1,33 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.PaginationDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPFDevelopers.Demo.DemoPages"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Pagination" />
+        <TextBlock Text="DataGrid pagination (page size and quick jump are enabled)" />
+        <DataGrid x:Name="PagedDataGrid"
+                  Height="260"
+                  AutoGenerateColumns="False"
+                  HorizontalAlignment="Stretch"
+                  IsReadOnly="True"
+                  x:DataType="local:PaginationDemoItem">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="80" Binding="{Binding Index}" Header="ID" />
+                <DataGridTextColumn Width="*" Binding="{Binding Name}" Header="Name" />
+                <DataGridTextColumn Width="*" Binding="{Binding Department}" Header="Department" />
+                <DataGridTextColumn Width="*" Binding="{Binding Role}" Header="Role" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <wd:Pagination x:Name="PagedPagination"
+                       Margin="0,8,0,0"
+                       Current="1" PageSize="10" Total="85"
+                       ShowTotal="True" ShowSizeChanger="True" ShowQuickJumper="True"
+                       PageChanged="OnPageChanged" />
+        <TextBlock Text="Simple" />
+        <wd:Pagination Current="2" Total="50" Simple="True"
+                       PageChanged="OnPageChanged" />
+        <TextBlock x:Name="SelectionInfo" />
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,49 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.CarouselDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPFDevelopers.Demo.DemoPages"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
+    x:DataType="local:CarouselDemo">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Spacing="16">
+            <TextBlock FontSize="18" FontWeight="SemiBold" Text="Carousel" />
+            <wd:GroupBox Header="Data-bound images">
+                <wd:Carousel Width="400" Height="200"
+                             AutoPlay="True"
+                             AutoPlayInterval="0:0:3"
+                             DisplayMemberPath="URL"
+                             ItemClickCommand="{Binding CarouselClickCommand}"
+                             ItemsSource="{Binding ImagePaths}" />
+            </wd:GroupBox>
+            <wd:GroupBox Header="XAML content">
+                <wd:Carousel Width="400" Height="200"
+                             AutoPlay="False"
+                             AutoPlayInterval="0:0:4"
+                             ItemClick="Carousel_ItemClick"
+                             ShowArrows="False">
+                    <Border Background="#722ed1">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="24" Foreground="White" Text="Slide 1" />
+                    </Border>
+                    <Border Background="#eb2f96">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="24" Foreground="White" Text="Slide 2" />
+                    </Border>
+                    <Border Background="#1890ff">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="24" Foreground="White" Text="Slide 3" />
+                    </Border>
+                    <Border Background="#52c41a">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="24" Foreground="White" Text="Slide 4" />
+                    </Border>
+                    <Border Background="#faad14">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="24" Foreground="White" Text="Slide 5" />
+                    </Border>
+                </wd:Carousel>
+            </wd:GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

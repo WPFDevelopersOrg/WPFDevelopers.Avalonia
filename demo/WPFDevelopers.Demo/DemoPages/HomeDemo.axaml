@@ -1,0 +1,126 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.HomeDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPFDevelopers.Demo.DemoPages"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="12" Spacing="24">
+            <Grid ColumnDefinitions="Auto,*">
+                <Image Width="72" Height="72" Margin="0,0,16,0" VerticalAlignment="Top"
+                       Source="avares://WPFDevelopers.Demo/Assets/WPFDevelopers.ico"
+                       AutomationProperties.Name="WPFDevelopers Logo" />
+                <StackPanel Grid.Column="1" Spacing="10">
+                    <TextBlock FontSize="28" FontWeight="Bold" Text="WPFDevelopers.Avalonia" TextWrapping="Wrap" />
+                    <TextBlock FontSize="15" Text="开源、跨平台的 Avalonia UI 组件库" TextWrapping="Wrap" />
+                    <TextBlock Foreground="{DynamicResource WD.RegularTextBrush}"
+                               Text="丰富的控件主题与实用组件，让桌面应用开发更简单。"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Spacing="10">
+                <TextBlock FontSize="18" FontWeight="SemiBold" Text="项目概览" />
+                <WrapPanel>
+                    <wd:Tag x:Name="VersionTag" Margin="0,0,8,8" Classes="badge"
+                            Label="version" Background="#E05D44" ToolTip.Tip="当前运行的控件库版本" />
+                    <wd:Tag x:Name="StarsTag" Margin="0,0,8,8" Classes="badge"
+                            Label="GitHub stars" Content="加载中" Background="#DFB317" />
+                    <wd:Tag x:Name="DownloadsTag" Margin="0,0,8,8" Classes="badge"
+                            Label="NuGet downloads" Content="加载中" Background="#007EC6" />
+                    <wd:Tag Margin="0,0,8,8" Classes="badge" Label="license" Content="MIT" Background="#4C1" />
+                </WrapPanel>
+                <TextBlock x:Name="StatisticsStatus" TextWrapping="Wrap"
+                           Foreground="{DynamicResource WD.RegularTextBrush}" />
+                <Button x:Name="RefreshButton" Content="刷新统计" Click="RefreshButton_Click"
+                        HorizontalAlignment="Left" Theme="{StaticResource wd-default}" />
+            </StackPanel>
+
+            <StackPanel Spacing="10">
+                <TextBlock FontSize="18" FontWeight="SemiBold" Text="代码仓库" />
+                <TextBlock Text="点击标签，在浏览器中打开项目。" TextWrapping="Wrap" />
+                <WrapPanel>
+                    <Button Margin="0,0,8,8" Padding="0" Theme="{StaticResource wd-normal}"
+                            Tag="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
+                            AutomationProperties.Name="打开 GitHub 仓库" Click="RepositoryButton_Click">
+                        <wd:Tag Classes="badge" Label="GitHub" Content="WPFDevelopers.Avalonia" LabelBackground="#24292F" Background="#181717" />
+                    </Button>
+                    <Button Margin="0,0,8,8" Padding="0" Theme="{StaticResource wd-normal}"
+                            Tag="https://atomgit.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
+                            AutomationProperties.Name="打开 AtomGit 仓库" Click="RepositoryButton_Click">
+                        <wd:Tag Classes="badge" Label="AtomGit" Content="WPFDevelopers.Avalonia" Background="#1677FF" />
+                    </Button>
+                    <Button Margin="0,0,8,8" Padding="0" Theme="{StaticResource wd-normal}"
+                            Tag="https://gitee.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
+                            AutomationProperties.Name="打开 Gitee 仓库" Click="RepositoryButton_Click">
+                        <wd:Tag Classes="badge" Label="Gitee" Content="WPFDevelopers.Avalonia" Background="#C71D23" />
+                    </Button>
+                    <Button Margin="0,0,8,8" Padding="0" Theme="{StaticResource wd-normal}"
+                            Tag="https://www.nuget.org/packages/WPFDevelopers.Avalonia/"
+                            AutomationProperties.Name="打开 NuGet 包" Click="RepositoryButton_Click">
+                        <wd:Tag Classes="badge" Label="NuGet" Content="WPFDevelopers.Avalonia" Background="#004880" />
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+
+            <Border Padding="16" BorderBrush="{DynamicResource WD.BaseBrush}"
+                    BorderThickness="1" CornerRadius="8">
+                <local:ThemeDemo />
+            </Border>
+
+            <Border Padding="16"
+                    Background="{DynamicResource WD.PrimaryMouseOverBrush}"
+                    CornerRadius="8">
+                <StackPanel Spacing="10">
+                    <TextBlock FontSize="18" FontWeight="SemiBold" Text="也在使用 WPF？" />
+                    <TextBlock Text="欢迎体验 WPFDevelopers 的 WPF 版本，为 Windows 桌面应用提供丰富的控件与实用示例。"
+                               TextWrapping="Wrap" />
+                    <WrapPanel>
+                        <Button Margin="0,0,8,8" Padding="0" Theme="{StaticResource wd-normal}"
+                                Tag="https://github.com/WPFDevelopersOrg/WPFDevelopers"
+                                AutomationProperties.Name="打开 WPF 版本 GitHub 仓库" Click="RepositoryButton_Click">
+                            <wd:Tag Classes="badge" Label="GitHub" Content="WPFDevelopers" LabelBackground="#24292F" Background="#181717" />
+                        </Button>
+                        <Button Margin="0,0,8,8" Padding="0" Theme="{StaticResource wd-normal}"
+                                Tag="https://atomgit.com/WPFDevelopersOrg/WPFDevelopers"
+                                AutomationProperties.Name="打开 WPF 版本 AtomGit 仓库" Click="RepositoryButton_Click">
+                            <wd:Tag Classes="badge" Label="AtomGit" Content="WPFDevelopers" Background="#1677FF" />
+                        </Button>
+                        <Button Margin="0,0,8,8" Padding="0" Theme="{StaticResource wd-normal}"
+                                Tag="https://gitee.com/WPFDevelopersOrg/WPFDevelopers"
+                                AutomationProperties.Name="打开 WPF 版本 Gitee 仓库" Click="RepositoryButton_Click">
+                            <wd:Tag Classes="badge" Label="Gitee" Content="WPFDevelopers" Background="#C71D23" />
+                        </Button>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <TextBlock x:Name="LinkError" IsVisible="False" TextWrapping="Wrap"
+                       Foreground="{DynamicResource WD.DangerBrush}" />
+
+            <StackPanel Spacing="10">
+                <TextBlock FontSize="18" FontWeight="SemiBold" Text="快速开始" />
+                <TextBlock Text="安装 NuGet 包后，在 App.axaml 中引入 wd:Resources；从左侧菜单浏览控件和示例源码。"
+                           TextWrapping="Wrap" />
+                <TextBox Text="dotnet add package WPFDevelopers.Avalonia" IsReadOnly="True"
+                         FontFamily="Consolas" />
+            </StackPanel>
+
+            <Border Padding="16" BorderBrush="{DynamicResource WD.BaseBrush}"
+                    BorderThickness="1" CornerRadius="8">
+                <StackPanel Spacing="12">
+                    <TextBlock FontSize="18" FontWeight="SemiBold" Text="关注公众号" />
+                    <TextBlock Text="微信扫一扫，关注 WPFDevelopers，获取项目动态与开发分享。"
+                               TextWrapping="Wrap" />
+                    <Border Padding="12" Background="White" HorizontalAlignment="Center">
+                        <Image x:Name="OfficialAccountQrCode"
+                               Width="258" Height="258" Stretch="Uniform"
+                               Source="avares://WPFDevelopers.Demo/Assets/wxgzh.jpg"
+                               AutomationProperties.Name="WPFDevelopers 微信公众号二维码" />
+                    </Border>
+                    <TextBlock HorizontalAlignment="Center" Text="微信扫码关注" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

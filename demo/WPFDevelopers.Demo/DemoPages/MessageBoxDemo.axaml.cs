@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.VisualTree;
 using WPFDevelopers.Avalonia;
 using WPFDevelopers.Avalonia.Controls;
 
@@ -38,7 +37,7 @@ namespace WPFDevelopers.Demo.DemoPages
 
         private Window? GetOwnerWindow()
         {
-            if (this.GetVisualRoot() is Window visualRoot)
+            if (TopLevel.GetTopLevel(this) is Window visualRoot)
             {
                 return visualRoot;
             }

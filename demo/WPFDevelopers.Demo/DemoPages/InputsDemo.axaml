@@ -9,21 +9,21 @@
                         MaxWidth="400"
                         HorizontalAlignment="Left"
                         Text=""
-                        Watermark="Enter text here..." />
+                        PlaceholderText="Enter text here..." />
                     <TextBox
                         Width="200"
                         MaxWidth="400"
                         HorizontalAlignment="Left"
                         Classes="IsClear"
                         Text=""
-                        Watermark="Clear text" />
+                        PlaceholderText="Clear text" />
                     <TextBox
                         Width="200"
                         MaxWidth="400"
                         HorizontalAlignment="Left"
                         PasswordChar="●"
                         RevealPassword="False"
-                        Watermark="Enter password here..." />
+                        PlaceholderText="Enter password here..." />
                     <TextBox
                         Width="200"
                         MaxWidth="400"
@@ -31,6 +31,6 @@
                         Classes="IsClear"
                         PasswordChar="●"
                         RevealPassword="False"
-                        Watermark="Clear password" />
+                        PlaceholderText="Clear password" />
     </StackPanel>
 </UserControl>

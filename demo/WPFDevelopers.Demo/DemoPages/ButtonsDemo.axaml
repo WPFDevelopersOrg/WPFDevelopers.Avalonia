@@ -7,13 +7,7 @@
         <TextBlock FontSize="18" FontWeight="SemiBold" Text="Buttons" />
          <WrapPanel>
                         <Button Margin="4" Content="Primary" />
-                        <Button
-                            Width="40"
-                            Height="40"
-                            Margin="4"
-                            wd:ElementHelper.IsRound="True"
-                            Content="Round"
-                            Theme="{StaticResource wd-primary}" />
+                       
                         <Button
                             Margin="4"
                             Content="Default"
@@ -22,11 +16,7 @@
                             Margin="4"
                             Content="Normal"
                             Theme="{StaticResource wd-normal}" />
-                        <Button
-                            Margin="4"
-                            wd:Loading.IsShow="True"
-                            Content="Success"
-                            Theme="{StaticResource wd-success}" />
+                        
                         <Button
                             Margin="4"
                             Content="Warning"
@@ -47,6 +37,20 @@
                             Margin="4"
                             Content="Filled Danger"
                             Theme="{StaticResource wd-danger-filled}" />
+                    </WrapPanel>
+
+                    <WrapPanel>
+                            <Button
+                            Margin="4"
+                            wd:ElementHelper.IsRound="True"
+                            Content="Round"
+                            Theme="{StaticResource wd-primary}" />
+
+                            <Button
+                            Margin="4"
+                            wd:Loading.IsShow="True"
+                            Content="Success"
+                            Theme="{StaticResource wd-success}" />
                     </WrapPanel>
     </StackPanel>
 </UserControl>

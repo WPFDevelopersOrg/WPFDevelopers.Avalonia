@@ -1,0 +1,46 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.GridSplitterDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Spacing="12">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="GridSplitter" />
+
+        <TextBlock Margin="0,10,0,0" FontSize="16" Text="Vertical splitter - resize columns" />
+        <Grid Height="180" ColumnDefinitions="*,Auto,*">
+            <Border Grid.Column="0" MinWidth="60" Background="{DynamicResource WD.PrimaryMouseOverBrush}">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Left" />
+            </Border>
+            <GridSplitter
+                Grid.Column="1"
+                Width="5"
+                Margin="2,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                ResizeBehavior="PreviousAndNext"
+                ResizeDirection="Columns"
+                ShowsPreview="True" />
+            <Border Grid.Column="2" MinWidth="60" Background="{DynamicResource WD.PrimaryMouseOverBrush}">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Right" />
+            </Border>
+        </Grid>
+
+        <TextBlock Margin="0,8,0,0" FontSize="16" Text="Horizontal splitter - resize rows" />
+        <Grid Height="240" RowDefinitions="*,Auto,*">
+            <Border Grid.Row="0" MinHeight="40" Background="{DynamicResource WD.PrimaryMouseOverBrush}">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Top" />
+            </Border>
+            <GridSplitter
+                Grid.Row="1"
+                Height="5"
+                Margin="0,2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                ResizeBehavior="PreviousAndNext"
+                ResizeDirection="Rows"
+                ShowsPreview="False" />
+            <Border Grid.Row="2" MinHeight="40" Background="{DynamicResource WD.PrimaryMouseOverBrush}">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Bottom" />
+            </Border>
+        </Grid>
+    </StackPanel>
+</UserControl>

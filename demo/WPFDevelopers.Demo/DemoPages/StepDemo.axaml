@@ -1,0 +1,47 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.StepDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <StackPanel Spacing="14">
+        <TextBlock FontSize="18" FontWeight="SemiBold" Text="Step" />
+        <TextBlock Text="Horizontal" />
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Previous" Click="OnPreviousClick" />
+            <Button Content="Next" Click="OnNextClick" />
+        </StackPanel>
+        <wd:Step x:Name="HorizontalStep" Width="600" StepIndex="1">
+            <wd:StepItem Content="Step 1" />
+            <wd:StepItem Content="Step 2" />
+            <wd:StepItem Content="Step 3" />
+        </wd:Step>
+        <TextBlock Text="Vertical" />
+        <wd:Step Width="500" Height="240" Orientation="Vertical"
+                 StepIndex="{Binding #HorizontalStep.StepIndex, Mode=OneWay}">
+            <wd:StepItem>
+                <StackPanel Spacing="4">
+                    <TextBlock FontWeight="SemiBold" Text="Account" />
+                    <TextBlock FontSize="12"
+                               Foreground="{DynamicResource WD.RegularTextBrush}"
+                               Text="Create your account and sign in." />
+                </StackPanel>
+            </wd:StepItem>
+            <wd:StepItem>
+                <StackPanel Spacing="4">
+                    <TextBlock FontWeight="SemiBold" Text="Profile" />
+                    <TextBlock FontSize="12"
+                               Foreground="{DynamicResource WD.RegularTextBrush}"
+                               Text="Fill in your personal information." />
+                </StackPanel>
+            </wd:StepItem>
+            <wd:StepItem>
+                <StackPanel Spacing="4">
+                    <TextBlock FontWeight="SemiBold" Text="Confirmation" />
+                    <TextBlock FontSize="12"
+                               Foreground="{DynamicResource WD.RegularTextBrush}"
+                               Text="Review and confirm your details." />
+                </StackPanel>
+            </wd:StepItem>
+        </wd:Step>
+    </StackPanel>
+</UserControl>

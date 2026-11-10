@@ -35,6 +35,30 @@
                 </ControlTemplate>
             </Setter>
         </Style>
+        <Style Selector="^:horizontal /template/ RepeatButton#PART_DecreaseButton">
+            <Setter Property="Margin" Value="0,0,-7,0" />
+        </Style>
+        <Style Selector="^:horizontal /template/ RepeatButton#PART_IncreaseButton">
+            <Setter Property="Margin" Value="-7,0,0,0" />
+        </Style>
+        <Style Selector="^:horizontal[IsDirectionReversed=True] /template/ RepeatButton#PART_DecreaseButton">
+            <Setter Property="Margin" Value="-7,0,0,0" />
+        </Style>
+        <Style Selector="^:horizontal[IsDirectionReversed=True] /template/ RepeatButton#PART_IncreaseButton">
+            <Setter Property="Margin" Value="0,0,-7,0" />
+        </Style>
+        <Style Selector="^:vertical /template/ RepeatButton#PART_DecreaseButton">
+            <Setter Property="Margin" Value="0,-7,0,0" />
+        </Style>
+        <Style Selector="^:vertical /template/ RepeatButton#PART_IncreaseButton">
+            <Setter Property="Margin" Value="0,0,0,-7" />
+        </Style>
+        <Style Selector="^:vertical[IsDirectionReversed=True] /template/ RepeatButton#PART_DecreaseButton">
+            <Setter Property="Margin" Value="0,0,0,-7" />
+        </Style>
+        <Style Selector="^:vertical[IsDirectionReversed=True] /template/ RepeatButton#PART_IncreaseButton">
+            <Setter Property="Margin" Value="0,-7,0,0" />
+        </Style>
         <Style Selector="^ /template/ Thumb#PART_Thumb">
             <Setter Property="Width" Value="14" />
             <Setter Property="Height" Value="14" />

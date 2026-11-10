@@ -27,7 +27,7 @@
                             <TextBlock Name="PART_Watermark"
                                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                        Foreground="{DynamicResource WD.PlaceholderTextBrush}"
-                                       Text="{TemplateBinding Watermark}"
+                                       Text="{TemplateBinding PlaceholderText}"
                                        TextTrimming="CharacterEllipsis"
                                        IsHitTestVisible="False" />
                         </Panel>

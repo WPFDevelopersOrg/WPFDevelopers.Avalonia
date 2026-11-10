@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
 xmlns="https://github.com/avaloniaui"
-xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:helpers="using:WPFDevelopers.Avalonia.Helpers">
     
     <ControlTheme x:Key="{x:Type DataGridCell}" TargetType="DataGridCell">
         <Setter Property="Background" Value="Transparent" />
@@ -34,6 +35,7 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     
     <ControlTheme x:Key="{x:Type DataGridColumnHeader}" TargetType="DataGridColumnHeader">
+        <Setter Property="helpers:DataGridHelper.ShowResizeIndicator" Value="True" />
         <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryTextBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -81,10 +83,30 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
                                        Stroke="{DynamicResource WD.PrimaryBrush}"
                                        StrokeThickness="1" />
                         </Panel>
+                        <Border Name="LeftResizeIndicator"
+                                Grid.ColumnSpan="2"
+                                Width="5"
+                                HorizontalAlignment="Left"
+                                Background="{DynamicResource WD.PrimaryBrush}"
+                                IsHitTestVisible="False"
+                                IsVisible="False" />
+                        <Border Name="RightResizeIndicator"
+                                Grid.ColumnSpan="2"
+                                Width="5"
+                                HorizontalAlignment="Right"
+                                Background="{DynamicResource WD.PrimaryBrush}"
+                                IsHitTestVisible="False"
+                                IsVisible="False" />
                     </Grid>
                 </Border>
             </ControlTemplate>
         </Setter>
+        <Style Selector="^.resize-left /template/ Border#LeftResizeIndicator">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^.resize-right /template/ Border#RightResizeIndicator">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
         <Style Selector="^:focus-visible /template/ Panel#FocusVisual">
             <Setter Property="IsVisible" Value="True" />
         </Style>
@@ -220,44 +242,46 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
         <Setter Property="Opacity" Value="1" />
         <Setter Property="Template">
             <ControlTemplate TargetType="DataGrid">
-                <Border Name="DataGridBorder"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        ClipToBounds="True">
-                    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,*,Auto"
-                          Margin="1">
-                        <DataGridColumnHeader Name="PART_TopLeftCornerHeader"
-                                              Grid.Row="0" Grid.Column="0"
-                                              Theme="{StaticResource DataGridTopLeftCornerHeader}" />
-                        <DataGridColumnHeadersPresenter Name="PART_ColumnHeadersPresenter"
-                                                        Grid.Row="0" Grid.Column="1" />
-                        <Rectangle Name="ColumnHeadersSeparator"
-                                   Grid.Row="0"
-                                   Grid.Column="0"
-                                   Grid.ColumnSpan="3"
-                                   Height="{StaticResource WD.Spacer}"
-                                   VerticalAlignment="Bottom"
-                                   Fill="{DynamicResource WD.LightBrush}" />
-                        <DataGridRowsPresenter Name="PART_RowsPresenter"
-                                               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+                    <Border Name="DataGridBorder"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            ClipToBounds="True">
+                        <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,*,Auto"
+                              Margin="1">
+                            <DataGridColumnHeader Name="PART_TopLeftCornerHeader"
+                                                  Grid.Row="0" Grid.Column="0"
+                                                  Theme="{StaticResource DataGridTopLeftCornerHeader}" />
+                            <DataGridColumnHeadersPresenter Name="PART_ColumnHeadersPresenter"
+                                                            Grid.Row="0" Grid.Column="1" />
+                            <Rectangle Name="ColumnHeadersSeparator"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="3"
+                                       Height="{StaticResource WD.Spacer}"
+                                       VerticalAlignment="Bottom"
+                                       Fill="{DynamicResource WD.LightBrush}" />
+                            <DataGridRowsPresenter Name="PART_RowsPresenter"
+                                                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                                    ClipToBounds="True"/>
 
-                        <ScrollBar Name="PART_VerticalScrollbar"
-                                   Grid.Row="1" Grid.Column="2"
-                                   Orientation="Vertical" />
+                            <ScrollBar Name="PART_VerticalScrollbar"
+                                       Grid.Row="1" Grid.Column="2"
+                                       Orientation="Vertical" />
 
-                        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ColumnDefinitions="Auto,*">
-                            <Rectangle Name="PART_FrozenColumnScrollBarSpacer" />
-                            <ScrollBar Name="PART_HorizontalScrollbar"
-                                       Grid.Column="1"
-                                       Orientation="Horizontal" />
+                            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ColumnDefinitions="Auto,*">
+                                <Rectangle Name="PART_FrozenColumnScrollBarSpacer" />
+                                <ScrollBar Name="PART_HorizontalScrollbar"
+                                           Grid.Column="1"
+                                           Orientation="Horizontal" />
+                            </Grid>
+                            <Rectangle Name="PART_BottomRightCorner"
+                                       Grid.Row="2" Grid.Column="2"
+                                       Fill="{DynamicResource WD.BackgroundBrush}" />
                         </Grid>
-                        <Rectangle Name="PART_BottomRightCorner"
-                                   Grid.Row="2" Grid.Column="2"
-                                   Fill="{DynamicResource WD.BackgroundBrush}" />
-                    </Grid>
-                </Border>
+                    </Border>
+                    
             </ControlTemplate>
         </Setter>
     </ControlTheme>

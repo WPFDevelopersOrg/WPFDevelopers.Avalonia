@@ -3,7 +3,7 @@
 
     <ControlTheme x:Key="{x:Type GridSplitter}" TargetType="GridSplitter" BasedOn="{StaticResource {x:Type Thumb}}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Width" Value="6" />
+        <Setter Property="Foreground" Value="{DynamicResource WD.RegularTextBrush}" />
         <Setter Property="Cursor" Value="SizeWestEast" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -11,15 +11,42 @@
             <ControlTemplate TargetType="GridSplitter">
                 <Border
                     Name="PART_Border"
-                    Background="{TemplateBinding Background}"
-                    CornerRadius="3"
-                    Opacity="0.7" />
+                    Background="{TemplateBinding Background}">
+                    <StackPanel
+                        Name="PART_Grip"
+                        Width="3"
+                        Height="15"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsHitTestVisible="False"
+                        Spacing="3">
+                        <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
+                        <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
+                        <Ellipse Width="3" Height="3" Fill="{TemplateBinding Foreground}" />
+                    </StackPanel>
+                </Border>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:pointerover /template/ Border#PART_Border,
                          ^:pressed /template/ Border#PART_Border,
                          ^:dragging /template/ Border#PART_Border">
             <Setter Property="Background" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+        <Style Selector="^:pointerover /template/ StackPanel#PART_Grip,
+                         ^:pressed /template/ StackPanel#PART_Grip,
+                         ^:dragging /template/ StackPanel#PART_Grip">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^[ResizeDirection=Rows]">
+            <Setter Property="Cursor" Value="SizeNorthSouth" />
+        </Style>
+        <Style Selector="^[ResizeDirection=Columns]">
+            <Setter Property="Width" Value="5" />
+        </Style>
+        <Style Selector="^[ResizeDirection=Rows] /template/ StackPanel#PART_Grip">
+            <Setter Property="RenderTransform">
+                <RotateTransform Angle="90" />
+            </Setter>
         </Style>
     </ControlTheme>
 

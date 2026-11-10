@@ -1,0 +1,104 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:WPFDevelopers.Avalonia.Controls"
+                    xmlns:helpers="using:WPFDevelopers.Avalonia.Helpers">
+    <ControlTheme x:Key="WD.CarouselIndicatorTheme" TargetType="Button">
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Background="Transparent">
+                    <Border Name="PART_Indicator"
+                            Height="3"
+                            VerticalAlignment="Center"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="1.5"
+                            Opacity="0.3" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^.selected">
+            <Setter Property="Width" Value="24" />
+        </Style>
+        <Style Selector="^:pointerover /template/ Border#PART_Indicator">
+            <Setter Property="Opacity" Value="0.6" />
+        </Style>
+        <Style Selector="^.selected /template/ Border#PART_Indicator">
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+    </ControlTheme>
+    <ControlTheme x:Key="{x:Type controls:Carousel}" TargetType="controls:Carousel">
+        <Setter Property="CornerRadius" Value="{DynamicResource WD.CornerRadius}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="ItemsPanel">
+            <ItemsPanelTemplate>
+                <controls:CarouselPanel />
+            </ItemsPanelTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border ClipToBounds="True"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid ClipToBounds="True">
+                        <ItemsPresenter Name="PART_ItemsPresenter"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
+                        <Button Name="PART_PrevButton"
+                                Width="40" Height="40"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="12,0,0,0"
+                                Padding="0"
+                                Background="#66000000"
+                                BorderThickness="0"
+                                helpers:ElementHelper.IsRound="True"
+                                CornerRadius="4"
+                                IsVisible="{TemplateBinding ShowArrows}">
+                            <Grid>
+                                <PathIcon Width="20" Height="20"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Data="{StaticResource WD.PreviousGeometry}"
+                                          Foreground="White" />
+                            </Grid>
+                        </Button>
+                        <Button Name="PART_NextButton"
+                                Width="40" Height="40"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0,0,12,0"
+                                Padding="0"
+                                Background="#66000000"
+                                helpers:ElementHelper.IsRound="True"
+                                BorderThickness="0"
+                                CornerRadius="4"
+                                IsVisible="{TemplateBinding ShowArrows}">
+                            <Grid>
+                                <PathIcon Width="20" Height="20"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Data="{StaticResource WD.NextGeometry}"
+                                          Foreground="White" />
+                            </Grid>
+                        </Button>
+                        <StackPanel Name="PART_Dots"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    Orientation="Horizontal"
+                                    Margin="8,0,8,8"
+                                    Spacing="4" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^ /template/ Button#PART_PrevButton:pointerover,
+                         ^ /template/ Button#PART_NextButton:pointerover">
+            <Setter Property="Background" Value="#99000000" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

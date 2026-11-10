@@ -75,7 +75,7 @@
                                  MinHeight="0"
                                  Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                  TextAlignment="{TemplateBinding TextAlignment}"
-                                 Watermark="{TemplateBinding Watermark}"
+                                 PlaceholderText="{TemplateBinding PlaceholderText}"
                                  IsReadOnly="{TemplateBinding IsReadOnly}"
                                  AcceptsReturn="False" />
                     </ButtonSpinner>

@@ -15,14 +15,12 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ClipToBounds="False" ColumnDefinitions="*, Auto">
-                    <Border Name="PART_Border"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="2"
+                <Border Name="PART_Border"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"/>
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                <Grid ClipToBounds="False" ColumnDefinitions="*, Auto">
                     <TextBlock
                     Name="PlaceholderTextBlock"
                     Grid.Column="0"
@@ -48,8 +46,15 @@
                     Margin="{TemplateBinding Padding}"
                     Data="{DynamicResource WD.ChevronDownGeometry}"
                     Foreground="{DynamicResource WD.RegularTextBrush}"
+                    RenderTransform="rotate(0deg)"
                     IsHitTestVisible="False"
-                    UseLayoutRounding="False" />
+                    UseLayoutRounding="False">
+                        <PathIcon.Transitions>
+                            <Transitions>
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+                            </Transitions>
+                        </PathIcon.Transitions>
+                    </PathIcon>
                     <Popup Name="PART_Popup"
                            Grid.Column="0"
                            VerticalOffset="{DynamicResource WD.PopupVerticalOffset}"
@@ -74,6 +79,7 @@
                         </Border>
                     </Popup>
                 </Grid>
+                </Border>
             </ControlTemplate>
         </Setter>
         <Style Selector="^:focus /template/ Border#PART_Border">
@@ -84,7 +90,7 @@
         </Style>
         <Style Selector="^:dropdownopen /template/ PathIcon#DropDownGlyph">
             <Setter Property="RenderTransform">
-                <ScaleTransform ScaleX="-1" ScaleY="-1" />
+                <TransformOperations>rotate(180deg)</TransformOperations>
             </Setter>
         </Style>
 

@@ -79,7 +79,7 @@
         <Style Selector="^:checked /template/ Ellipse#PART_Thumb">
             <Setter Property="TranslateTransform.X" Value="20" />
             <Style.Animations>
-                <Animation FillMode="Forward" Duration="0:0:0.28" Easing="ElasticEaseInOut">
+                <Animation FillMode="Forward" Duration="0:0:0.28" Easing="SineEaseInOut">
                     <KeyFrame Cue="0%">
                         <Setter Property="TranslateTransform.X" Value="0" />
                     </KeyFrame>
@@ -92,7 +92,7 @@
         <Style Selector="^:not(:checked) /template/ Ellipse#PART_Thumb">
             <Setter Property="TranslateTransform.X" Value="0" />
             <Style.Animations>
-                <Animation FillMode="Forward" Duration="0:0:0.28" Easing="ElasticEaseInOut">
+                <Animation FillMode="Forward" Duration="0:0:0.28" Easing="SineEaseInOut">
                     <KeyFrame Cue="0%">
                         <Setter Property="TranslateTransform.X" Value="20" />
                     </KeyFrame>

@@ -7,15 +7,15 @@
 
     <MenuFlyout x:Key="WD.DefaultTextBoxContextFlyout" Placement="Bottom">
         <MenuItem Command="{Binding $parent[TextBox].Cut}"
-                  Header="{Binding Converter={StaticResource WD.CultureTextConverter}, ConverterParameter=Cut}"
+                  Header="{ReflectionBinding Converter={StaticResource WD.CultureTextConverter}, ConverterParameter=Cut}"
                   InputGesture="{x:Static TextBox.CutGesture}"
                   IsEnabled="{Binding $parent[TextBox].CanCut}" />
         <MenuItem Command="{Binding $parent[TextBox].Copy}"
-                  Header="{Binding Converter={StaticResource WD.CultureTextConverter}, ConverterParameter=Copy}"
+                  Header="{ReflectionBinding Converter={StaticResource WD.CultureTextConverter}, ConverterParameter=Copy}"
                   InputGesture="{x:Static TextBox.CopyGesture}"
                   IsEnabled="{Binding $parent[TextBox].CanCopy}" />
         <MenuItem Command="{Binding $parent[TextBox].Paste}"
-                  Header="{Binding Converter={StaticResource WD.CultureTextConverter}, ConverterParameter=Paste}"
+                  Header="{ReflectionBinding Converter={StaticResource WD.CultureTextConverter}, ConverterParameter=Paste}"
                   InputGesture="{x:Static TextBox.PasteGesture}"
                   IsEnabled="{Binding $parent[TextBox].CanPaste}" />
     </MenuFlyout>
@@ -28,6 +28,8 @@
         <Setter Property="Padding" Value="{DynamicResource WD.Padding}" />
         <Setter Property="CornerRadius" Value="{DynamicResource WD.CornerRadius}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
         <Setter Property="CaretBrush" Value="{DynamicResource WD.PrimaryBrush}" />
         <Setter Property="SelectionBrush" Value="{DynamicResource WD.PrimaryMouseOverBrush}" />
         <Setter Property="ContextFlyout" Value="{StaticResource WD.DefaultTextBoxContextFlyout}" />
@@ -42,14 +44,15 @@
                         <ScrollViewer Name="PART_ContentHost"
                                       Grid.Column="0"
                                       Margin="{TemplateBinding Padding}"
-                                      HorizontalScrollBarVisibility="Hidden"
-                                      VerticalScrollBarVisibility="Hidden">
+                                      AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                                      HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                      VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
                             <Panel>
                                 <TextBlock Name="PART_Watermark"
                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                            Foreground="{DynamicResource WD.PlaceholderTextBrush}"
-                                           Text="{TemplateBinding Watermark}"
+                                           Text="{TemplateBinding PlaceholderText}"
                                            TextTrimming="CharacterEllipsis">
                                     <TextBlock.IsVisible>
                                         <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" Converter="{StaticResource WD.StringIsEmptyConverter}" />

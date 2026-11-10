@@ -106,7 +106,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource WD.BaseBrush}" />
         <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryTextBrush}" />
-        <Setter Property="Padding" Value="{DynamicResource WD.Padding}" />
+        <Setter Property="Padding" Value="{DynamicResource WD.InputPadding}" />
         <Setter Property="CornerRadius" Value="{DynamicResource WD.CornerRadius}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Center" />

@@ -26,7 +26,7 @@
         <Setter Property="Padding" Value="{DynamicResource WD.Padding}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="CornerRadius" Value="{DynamicResource WD.CornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
@@ -143,7 +143,7 @@
         <Setter Property="Padding" Value="{DynamicResource WD.Padding}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="CornerRadius" Value="{DynamicResource WD.CornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Name="PART_LayoutRoot"

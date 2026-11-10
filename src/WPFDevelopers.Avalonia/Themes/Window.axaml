@@ -1,0 +1,144 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wd="using:WPFDevelopers.Avalonia.Windows">
+    <ControlTheme x:Key="WD.WindowButton" TargetType="Button" BasedOn="{StaticResource wd-base}">
+        <Setter Property="Width" Value="45" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource WD.WindowTextBrush}" />
+        <Setter Property="Cursor" Value="Arrow" />
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="#20FFFFFF" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="#40000000" />
+        </Style>
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="0.4" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="WD.WindowCloseButton" TargetType="Button" BasedOn="{StaticResource WD.WindowButton}">
+        <Style Selector="^:pointerover">
+            <Setter Property="Background" Value="#E81123" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+        <Style Selector="^:pressed">
+            <Setter Property="Background" Value="#C50F1F" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type wd:Window}" TargetType="wd:Window"
+                  BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="BorderBrush" Value="{DynamicResource WD.WindowBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="TitleBackground" Value="{DynamicResource WD.WindowBorderBrush}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <VisualLayerManager Name="PART_VisualLayerManager">
+                    <Panel>
+                        <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+                        <Border Name="PART_Border"
+                                Margin="{TemplateBinding OffScreenMargin}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" />
+                        <Grid Margin="{TemplateBinding OffScreenMargin}" RowDefinitions="Auto,*">
+                            <Grid Name="PART_TitleBar" Height="{TemplateBinding TitleHeight}"
+                                  Background="{TemplateBinding TitleBackground}"
+                                  WindowDecorationProperties.ElementRole="TitleBar">
+                                <Grid Name="PART_NormalTitleBar" ColumnDefinitions="Auto,Auto,*,Auto">
+                                    <Image Name="PART_TitleBarIcon" Width="16" Height="16" Margin="5,0,0,0"
+                                           VerticalAlignment="Center"
+                                           WindowDecorationProperties.ElementRole="User" />
+                                    <TextBlock Name="PART_Title" Grid.Column="1" Margin="5,0"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource WD.WindowTextBrush}"
+                                               Text="{TemplateBinding Title}" />
+                                    <ContentPresenter Grid.Column="2" VerticalAlignment="Center"
+                                                      Content="{TemplateBinding TitleBarLayout}"
+                                                      WindowDecorationProperties.ElementRole="User" />
+                                    <StackPanel Name="PART_CaptionButtons" Grid.Column="3"
+                                                Orientation="Horizontal"
+                                                WindowDecorationProperties.ElementRole="User">
+                                        <Button Name="PART_MinimizeButton"
+                                                Theme="{StaticResource WD.WindowButton}"
+                                                AutomationProperties.Name="Minimize"
+                                                WindowDecorationProperties.ElementRole="MinimizeButton">
+                                            <Rectangle Width="10" Height="0.8" Margin="0,7,0,0"
+                                                       Fill="{DynamicResource WD.WindowTextBrush}" />
+                                        </Button>
+                                        <Button Name="PART_RestoreButton"
+                                                Theme="{StaticResource WD.WindowButton}"
+                                                IsEnabled="{TemplateBinding CanResize}"
+                                                AutomationProperties.Name="Maximize"
+                                                WindowDecorationProperties.ElementRole="MaximizeButton">
+                                            <Path Name="PART_MaximizeGlyph" Width="10" Height="10" Stretch="Uniform"
+                                                  Data="{StaticResource WD.WindowMaximizeGeometry}"
+                                                  Fill="{DynamicResource WD.WindowTextBrush}" />
+                                        </Button>
+                                        <Button Name="PART_CloseButton"
+                                                Theme="{StaticResource WD.WindowCloseButton}"
+                                                AutomationProperties.Name="Close"
+                                                WindowDecorationProperties.ElementRole="CloseButton">
+                                            <Path Width="10" Height="10" Stretch="Uniform"
+                                                  Data="{StaticResource WD.WindowCloseGeometry}"
+                                                  Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                                <ContentPresenter Name="PART_CustomTitleBar" IsVisible="False"
+                                                  Content="{TemplateBinding TitleBar}"
+                                                  WindowDecorationProperties.ElementRole="User" />
+                            </Grid>
+                            <Border Grid.Row="1"
+                                    Padding="{Binding BorderThickness, ElementName=PART_Border}">
+                                <ContentPresenter Name="PART_ContentPresenter"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Border>
+                        </Grid>
+                    </Panel>
+                </VisualLayerManager>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^[TitleBarMode=High]">
+            <Setter Property="TitleHeight" Value="50" />
+        </Style>
+        <Style Selector="^[TitleBarMode=High] /template/ Image#PART_TitleBarIcon">
+            <Setter Property="Width" Value="23" />
+            <Setter Property="Height" Value="23" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+        </Style>
+        <Style Selector="^[TitleBarMode=High] /template/ TextBlock#PART_Title">
+            <Setter Property="FontSize" Value="{DynamicResource WD.TitleFontSize}" />
+        </Style>
+        <Style Selector="^[TitleBarMode=None] /template/ Grid#PART_NormalTitleBar">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^[TitleBarMode=None] /template/ ContentPresenter#PART_CustomTitleBar">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:maximized /template/ Border#PART_Border">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="^:maximized /template/ Path#PART_MaximizeGlyph">
+            <Setter Property="Data" Value="{StaticResource WD.WindowRestoreGeometry}" />
+        </Style>
+        <Style Selector="^:maximized /template/ Button#PART_RestoreButton">
+            <Setter Property="AutomationProperties.Name" Value="Restore" />
+        </Style>
+        <Style Selector="^:fullscreen /template/ Border#PART_Border">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style Selector="^:fullscreen /template/ Grid#PART_TitleBar">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

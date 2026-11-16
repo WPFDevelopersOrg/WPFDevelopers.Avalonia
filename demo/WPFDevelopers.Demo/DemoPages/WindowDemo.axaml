@@ -1,0 +1,55 @@
+<UserControl
+    x:Class="WPFDevelopers.Demo.DemoPages.WindowDemo"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WPFDevelopers.Demo">
+    <ScrollViewer>
+        <StackPanel Spacing="16">
+            <TextBlock FontSize="20" FontWeight="SemiBold" Text="{local:DemoLanguage Key=WindowDemoTitle}" />
+            <TextBlock Foreground="{DynamicResource WD.RegularTextBrush}"
+                       TextWrapping="Wrap"
+                       Text="{local:DemoLanguage Key=WindowDemoDescription}" />
+
+            <Border Padding="16" BorderThickness="1" CornerRadius="8"
+                    BorderBrush="{DynamicResource WD.BaseBrush}">
+                <StackPanel Spacing="8">
+                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="{local:DemoLanguage Key=WindowNormalTitle}" />
+                    <TextBlock Text="{local:DemoLanguage Key=WindowNormalDescription}" TextWrapping="Wrap" />
+                    <Button HorizontalAlignment="Left" Content="{local:DemoLanguage Key=OpenNormalWindow}"
+                            Theme="{StaticResource wd-primary}" Click="OnNormalClick" />
+                </StackPanel>
+            </Border>
+
+            <Border Padding="16" BorderThickness="1" CornerRadius="8"
+                    BorderBrush="{DynamicResource WD.BaseBrush}">
+                <StackPanel Spacing="8">
+                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="{local:DemoLanguage Key=WindowHighTitle}" />
+                    <TextBlock Text="{local:DemoLanguage Key=WindowHighDescription}" TextWrapping="Wrap" />
+                    <Button HorizontalAlignment="Left" Content="{local:DemoLanguage Key=OpenHighWindow}"
+                            Theme="{StaticResource wd-primary}" Click="OnHighClick" />
+                </StackPanel>
+            </Border>
+
+            <Border Padding="16" BorderThickness="1" CornerRadius="8"
+                    BorderBrush="{DynamicResource WD.BaseBrush}">
+                <StackPanel Spacing="8">
+                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="{local:DemoLanguage Key=WindowCustomTitle}" />
+                    <TextBlock Text="{local:DemoLanguage Key=WindowCustomDescription}" TextWrapping="Wrap" />
+                    <Button HorizontalAlignment="Left" Content="{local:DemoLanguage Key=OpenCustomWindow}"
+                            Theme="{StaticResource wd-primary}" Click="OnCustomClick" />
+                </StackPanel>
+            </Border>
+
+            <Border Padding="16" BorderThickness="1" CornerRadius="8"
+                    BorderBrush="{DynamicResource WD.BaseBrush}">
+                <StackPanel Spacing="8">
+                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="{local:DemoLanguage Key=WindowDialogTitle}" />
+                    <TextBlock Text="{local:DemoLanguage Key=WindowDialogDescription}" TextWrapping="Wrap" />
+                    <Button HorizontalAlignment="Left" Content="{local:DemoLanguage Key=OpenDialog}"
+                            Theme="{StaticResource wd-primary}" Click="OnDialogClick" />
+                    <TextBlock x:Name="DialogResultText" Text="{local:DemoLanguage Key=DialogNotOpened}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

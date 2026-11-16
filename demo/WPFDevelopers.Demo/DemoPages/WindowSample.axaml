@@ -1,0 +1,56 @@
+<wd:Window
+    x:Class="WPFDevelopers.Demo.DemoPages.WindowSample"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
+    Title="Window 示例"
+    Width="600"
+    Height="360"
+    MinWidth="420"
+    MinHeight="240"
+    WindowStartupLocation="CenterOwner">
+    <wd:Window.TitleBarLayout>
+        <Button Margin="12,0" Padding="12,4" HorizontalAlignment="Right"
+                Content="标题栏操作" Theme="{StaticResource wd-default}" Click="OnToolbarClick" />
+    </wd:Window.TitleBarLayout>
+    <wd:Window.TitleBar>
+        <Grid ColumnDefinitions="*,Auto"
+              WindowDecorationProperties.ElementRole="TitleBar">
+            <TextBlock Margin="12,0" VerticalAlignment="Center"
+                       Foreground="{DynamicResource WD.WindowTextBrush}"
+                       Text="自定义标题栏 · 拖动此处移动窗口" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal"
+                        WindowDecorationProperties.ElementRole="User">
+                <Button Content="—" Theme="{StaticResource WD.WindowButton}"
+                        AutomationProperties.Name="Minimize"
+                        WindowDecorationProperties.ElementRole="MinimizeButton"
+                        Click="OnMinimizeClick" />
+                <Button Content="□" Theme="{StaticResource WD.WindowButton}"
+                        AutomationProperties.Name="Maximize or restore"
+                        WindowDecorationProperties.ElementRole="MaximizeButton"
+                        Click="OnRestoreClick" />
+                <Button Content="×" Theme="{StaticResource WD.WindowCloseButton}"
+                        AutomationProperties.Name="Close"
+                        WindowDecorationProperties.ElementRole="CloseButton"
+                        Click="OnCloseClick" />
+            </StackPanel>
+        </Grid>
+    </wd:Window.TitleBar>
+    <Grid Margin="24" RowDefinitions="Auto,*,Auto">
+        <StackPanel Spacing="8">
+            <TextBlock x:Name="ModeText" FontSize="20" FontWeight="SemiBold" />
+            <TextBlock Text="窗口内容随应用主题变化，可在主窗口切换明暗主题。"
+                       TextWrapping="Wrap" Foreground="{DynamicResource WD.RegularTextBrush}" />
+        </StackPanel>
+        <TextBlock x:Name="StatusText" Grid.Row="1" VerticalAlignment="Center"
+                   HorizontalAlignment="Center" TextWrapping="Wrap"
+                   Text="这是独立的 WD Window。" />
+        <StackPanel x:Name="DialogActions" Grid.Row="2" IsVisible="False"
+                    Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button Content="取消" Theme="{StaticResource wd-default}" Click="OnCancelClick" />
+            <Button Content="确定" Theme="{StaticResource wd-primary}" Click="OnConfirmClick" />
+        </StackPanel>
+        <Button x:Name="CloseButton" Grid.Row="2" HorizontalAlignment="Right"
+                Content="关闭窗口" Theme="{StaticResource wd-default}" Click="OnCloseClick" />
+    </Grid>
+</wd:Window>

@@ -11,6 +11,9 @@ namespace WPFDevelopers.Demo
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
+#if DEBUG
+                .WithDeveloperTools()
+#endif
                 //.With(new Win32PlatformOptions
                 //{
                 //    DpiAwareness = Win32DpiAwareness.SystemDpiAware

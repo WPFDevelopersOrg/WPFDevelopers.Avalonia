@@ -1,10 +1,12 @@
-﻿<Window
+﻿<wd:Window
     x:Class="WPFDevelopers.Demo.MainWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:WPFDevelopers.Demo"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svg="clr-namespace:Avalonia.Svg;assembly=Svg.Controls.Avalonia"
+    xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
     Title="WPFDevelopers Demo"
     Width="900"
     Height="700"
@@ -12,12 +14,41 @@
     d:DesignWidth="900"
     Icon="avares://WPFDevelopers.Demo/Assets/WPFDevelopers.ico"
     WindowStartupLocation="CenterScreen"
+    TitleBarMode="High"
     mc:Ignorable="d">
 
-    <Grid Margin="10">
+    <Window.Resources>
+        <local:SvgBrushToCssConverter x:Key="SvgBrushToCssConverter" />
+        <ControlTheme x:Key="HomeNavigationTheme" TargetType="Button" BasedOn="{StaticResource wd-base}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.RegularTextBrush}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="6" />
+            <Setter Property="MinHeight" Value="32" />
+            <Setter Property="Focusable" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{DynamicResource WD.BaseMoveBrush}" />
+            </Style>
+            <Style Selector="^:focus-visible">
+                <Setter Property="Background" Value="{DynamicResource WD.PrimaryMouseOverBrush}" />
+            </Style>
+            <Style Selector="^.selected">
+                <Setter Property="Background" Value="{DynamicResource WD.PrimaryMouseOverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryBrush}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style Selector="^:pressed /template/ Border#PART_Border">
+                <Setter Property="Opacity" Value="0.85" />
+            </Style>
+        </ControlTheme>
+    </Window.Resources>
+
+    <Grid Margin="4">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180" MinWidth="120" />
-             <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="200" MinWidth="190" />
+                <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -27,29 +58,73 @@
             BorderBrush="{DynamicResource WD.BaseBrush}"
             BorderThickness="1"
             CornerRadius="8">
-            <ListBox
-                x:Name="DemoNavListBox"
-                Background="Transparent"
-                BorderThickness="0"
-                SelectionChanged="DemoNavListBox_SelectionChanged">
-                <ListBox.ItemTemplate>
-                    <DataTemplate x:DataType="local:DemoNavItem">
-                        <TextBlock
-                            Margin="8,6"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Text="{Binding Name}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Grid RowDefinitions="Auto,Auto,*">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Button x:Name="HomeButton"
+                            Width="32"
+                            Height="32"
+                            Margin="0,0,6,0"
+                            VerticalAlignment="Center"
+                            AutomationProperties.Name="{local:DemoLanguage Key=Home}"
+                            ToolTip.Tip="{local:DemoLanguage Key=Home}"
+                            Theme="{StaticResource HomeNavigationTheme}"
+                            Click="HomeButton_Click">
+                        <wd:PathIconEx Width="16" Height="16" Kind="Home"
+                                       Foreground="{Binding #HomeButton.Foreground}" />
+                    </Button>
+                    <TextBox
+                        x:Name="MenuSearchTextBox"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Classes="IsClear"
+                        PlaceholderText="{local:DemoLanguage Key=SearchControl}" />
+                </Grid>
+                <wd:Segmented
+                    x:Name="MenuCategorySegmented"
+                    Grid.Row="1"
+                    CornerRadius="15"
+                    Margin="0,3"
+                    SelectedIndex="0">
+                    <wd:SegmentedItem Content="{local:DemoLanguage Key=Custom}" />
+                    <wd:SegmentedItem Content="{local:DemoLanguage Key=Basic}" />
+                </wd:Segmented>
+                <ListBox
+                    x:Name="DemoNavListBox"
+                    Grid.Row="2"
+                    Background="Transparent"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource WD.CornerRadius}"
+                    SelectionChanged="DemoNavListBox_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="local:DemoNavItem">
+                            <Grid
+                                Margin="8,2"
+                                ColumnDefinitions="20,*">
+                                <svg:Svg
+                                    Width="16"
+                                    Height="16"
+                                    VerticalAlignment="Center"
+                                    svg:Svg.CurrentCss="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ListBoxItem}, Converter={StaticResource SvgBrushToCssConverter}}"
+                                    Path="{Binding IconPath}" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding DisplayName}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </Border>
        
         <GridSplitter
-        Grid.Column="1"
-        Margin="4,0"
-        Width="4"
-        VerticalAlignment="Stretch"
-        ResizeDirection="Columns"/>
+            Grid.Column="1"
+            Width="5"
+            Margin="2,0"
+            VerticalAlignment="Stretch"
+            ResizeBehavior="PreviousAndNext"
+            ResizeDirection="Columns"
+            ShowsPreview="True" />
 
 
         <Border
@@ -58,7 +133,82 @@
             BorderBrush="{DynamicResource WD.BaseBrush}"
             BorderThickness="1"
             CornerRadius="8">
-            <ContentControl x:Name="DemoPageHost" />
+            <wd:Drawer
+                x:Name="CodeDrawer"
+                BorderThickness="0"
+                Position="Right">
+                <wd:Drawer.Header>
+                    <Grid MaxWidth="600" Margin="12" RowDefinitions="Auto,*">
+                        <Grid Margin="0,0,0,10" ColumnDefinitions="*,Auto">
+                            <TextBlock
+                                x:Name="SourceTitle"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="SemiBold" />
+                            <Button
+                                Grid.Column="1"
+                                Width="32"
+                                Height="32"
+                                Padding="6"
+                                wd:ElementHelper.IsRound="True"
+                                Click="CloseSourceButton_Click"
+                                Theme="{StaticResource wd-default}"
+                                ToolTip.Tip="{local:DemoLanguage Key=Close}">
+                                <wd:PathIconEx Width="10" Height="10" Kind="WindowClose" />
+                                </Button>
+                        </Grid>
+                        <TabControl x:Name="SourceTabs" Grid.Row="1">
+                            <TabItem Header="XAML">
+                                <TextBox
+                                    x:Name="XamlSource"
+                                    AcceptsReturn="True"
+                                    FontFamily="Consolas"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    VerticalContentAlignment="Top"
+                                    FontSize="13"
+                                    IsReadOnly="True"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                    ScrollViewer.AllowAutoHide="False"
+                                    TextWrapping="NoWrap" />
+                            </TabItem>
+                            <TabItem Header="C#">
+                                <TextBox
+                                    x:Name="CSharpSource"
+                                    VerticalContentAlignment="Top"
+                                    AcceptsReturn="True"
+                                    FontFamily="Consolas"
+                                    FontSize="13"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    IsReadOnly="True"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                    ScrollViewer.AllowAutoHide="False"
+                                    TextWrapping="NoWrap" />
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </wd:Drawer.Header>
+                <Grid RowDefinitions="Auto,*">
+                    <Button
+                        Width="32"
+                        Height="32"
+                        Padding="6"
+                        HorizontalAlignment="Right"
+                        wd:ElementHelper.IsRound="True"
+                        AutomationProperties.Name="{local:DemoLanguage Key=ViewSource}"
+                        Click="ViewSourceButton_Click"
+                        Theme="{StaticResource wd-default}"
+                        ToolTip.Tip="{local:DemoLanguage Key=ViewSource}">
+                        <wd:PathIconEx Kind="Code" />
+                    </Button>
+                    <ContentControl
+                        x:Name="DemoPageHost"
+                        Grid.Row="1" />
+                </Grid>
+            </wd:Drawer>
         </Border>
     </Grid>
-</Window>
+</wd:Window>

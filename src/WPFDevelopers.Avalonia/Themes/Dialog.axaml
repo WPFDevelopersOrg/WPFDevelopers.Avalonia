@@ -1,0 +1,78 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:WPFDevelopers.Avalonia.Controls"
+                    xmlns:lang="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
+    <ControlTheme x:Key="{x:Type controls:Dialog}" TargetType="controls:Dialog">
+        <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryTextBrush}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="28,20" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        ClipToBounds="True">
+                    <Grid RowDefinitions="Auto,*,Auto">
+                        <Grid Margin="28,28,28,0" ColumnDefinitions="*,Auto">
+                            <TextBlock Margin="0,0,10,0" VerticalAlignment="Center"
+                                       FontSize="18" FontWeight="SemiBold"
+                                       Text="{TemplateBinding Title}" TextTrimming="CharacterEllipsis" />
+                            <Button Name="PART_CloseButton" Grid.Column="1" Width="28" Height="28"
+                                    Theme="{StaticResource wd-path}"
+                                    ToolTip.Tip="{lang:Language Key=Close}"
+                                    AutomationProperties.Name="{lang:Language Key=Close}">
+                                <PathIcon Width="12" Height="12" Data="{StaticResource WD.WindowCloseGeometry}" />
+                            </Button>
+                        </Grid>
+                        <ScrollViewer Grid.Row="1" Padding="{TemplateBinding Padding}"
+                                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <ContentPresenter Name="PART_ContentPresenter"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </ScrollViewer>
+                        <Border Grid.Row="2" Padding="20,0,20,16" IsVisible="{TemplateBinding ShowFooter}">
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10">
+                                <Button Name="PART_ConfirmButton" Height="34" MinWidth="76" Padding="12,0"
+                                        IsDefault="True" IsEnabled="{TemplateBinding IsConfirmEnabled}">
+                                    <Grid>
+                                        <TextBlock Name="PART_DefaultConfirmText" Text="{lang:Language Key=OK}" />
+                                        <TextBlock Name="PART_CustomConfirmText" Text="{TemplateBinding ConfirmText}" />
+                                    </Grid>
+                                </Button>
+                                <Button Name="PART_CancelButton" Height="34" MinWidth="76" Padding="12,0"
+                                        Theme="{StaticResource wd-default}">
+                                    <Grid>
+                                        <TextBlock Name="PART_DefaultCancelText" Text="{lang:Language Key=Cancel}" />
+                                        <TextBlock Name="PART_CustomCancelText" Text="{TemplateBinding CancelText}" />
+                                    </Grid>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^ /template/ TextBlock#PART_CustomConfirmText">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^ /template/ TextBlock#PART_CustomCancelText">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^:custom-confirm /template/ TextBlock#PART_DefaultConfirmText">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^:custom-confirm /template/ TextBlock#PART_CustomConfirmText">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:custom-cancel /template/ TextBlock#PART_DefaultCancelText">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^:custom-cancel /template/ TextBlock#PART_CustomCancelText">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

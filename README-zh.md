@@ -37,16 +37,57 @@ dotnet add package WPFDevelopers.Avalonia
              xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
              x:Class="YourApp.App">
     <Application.Resources>
-        <wd:Resources Theme="Default"/>
+        <wd:Resources/>
     </Application.Resources>
 </Application>
 ```
 
-> `Theme` 支持：`Light`（亮色）、`Dark`（暗色）、`Default`（跟随系统）
+`ThemeMode` 支持 `System`（跟随系统）、`Light`（浅色）和 `Dark`（深色）。省略 `Theme` 属性会恢复已保存的模式，未保存时跟随系统。也可通过 `Theme="System"`、`Theme="Light"` 或 `Theme="Dark"` 显式指定模式。
+
+`ThemeManager.Instance.Theme` 表示所选模式，`ActualTheme` 表示实际生效的 `Light` 或 `Dark` 主题。监听 `ThemeModeChanged` 获取模式变化，监听 `ThemeChanged` 获取实际主题变化。旧代码中的 `ThemeType.Default` 改为 `ThemeMode.System`，`ThemeType.Light`/`Dark` 改为 `ThemeMode.Light`/`Dark`。
+
+### 多语言
+
+控件库内置简体中文（`zh-CN`）、英文（`en-US`）和韩文（`ko-KR`）资源。可在运行时切换语言，并通过 `Language` 标记扩展绑定 XAML 文本：
+
+```csharp
+using System.Globalization;
+using WPFDevelopers.Avalonia;
+
+LanguageManager.Instance.ChangeLanguage(new CultureInfo("ko-KR"));
+```
+
+```xml
+<TextBlock Text="{wd:Language Key=OK}" />
+```
+
+Demo 首页的“个性化 → 语言”可切换示例和控件库的显示语言。
 
 ---
 
 ## 控件使用
+
+### Dialog（对话框）
+
+`Dialog` 在所属窗口内显示遮罩和内容，并通过 `ShowAsync` 返回结果。内容须为未附着到其他容器的 `UserControl`，窗口须可见且具备 `OverlayLayer`；每个窗口同时只能打开一个 Dialog。
+
+```csharp
+var dialog = new Dialog
+{
+    Owner = ownerWindow,
+    Title = "编辑",
+    Content = new EditUserControl(),
+    DialogWidth = 400
+};
+dialog.Closing += (_, e) =>
+{
+    if (e.Reason == DialogCloseReason.Confirm && !CanSave())
+        e.Cancel = true;
+};
+DialogResult result = await dialog.ShowAsync();
+```
+
+可使用 `IsOpen` 双向绑定控制开关、`IsConfirmEnabled` 控制确认按钮，或通过 `Close` 指定关闭原因。确认时会更新绑定源并检查 Avalonia 数据校验错误；`Closing` 可取消关闭，`ClosedCommand` 的参数为结果；关闭所属窗口时结果为 `Canceled`。打开期间不能替换 `Content`。默认按钮文字随语言切换，也可通过 `ConfirmText` 和 `CancelText` 覆盖。Avalonia 没有 WPF 的 `Page` 和路由命令实现，此版本使用 `UserControl` 和模板按钮。窗口级 `KeyBindings` 在对话框打开时仍可能触发，使用方应在命令的 `CanExecute` 中自行检查对话框状态。
 
 ### Carousel（走马灯）
 
@@ -102,7 +143,11 @@ private void OnCarouselItemClick(object? sender, RoutedEventArgs e)
 
 ### Window（自定义窗口）
 
-`wd:Window` 在 Windows 上使用 WD 标题栏和窗口按钮；其他平台回退为 Avalonia 原生 `Window`。`TitleBarMode="High"` 使用较高标题栏，`TitleBarLayout` 可在标题与窗口按钮之间放置工具栏内容。
+`wd:Window` 在 Windows 上使用 WD 标题栏和窗口按钮；其他平台回退为 Avalonia 原生 `Window`。`TitleBarMode="High"` 使用较高标题栏，`TitleBarLayout` 可在标题与窗口按钮之间放置工具栏内容。设置 `ShowTheme="True"` 可在标题栏显示主题菜单，支持跟随系统、浅色和深色模式；所选模式会按应用保存到本地应用数据目录。
+
+主题菜单采用 WPF 版本同款矢量图标：鼠标移入主题按钮即展开，移入菜单可继续选择；移出按钮与菜单后延迟 150 毫秒关闭。也支持点击或键盘展开、上下方向键选择、Esc 关闭。
+
+Demo 的 **Basic → Window** 提供标题栏和模态窗口示例；模态窗口可通过 `ShowDialog<bool>(owner)` 获取 `Close(true)` 或 `Close(false)` 返回的结果。
 
 ```xml
 <wd:Window xmlns="https://github.com/avaloniaui"
@@ -112,6 +157,7 @@ private void OnCarouselItemClick(object? sender, RoutedEventArgs e)
            Title="我的应用"
            Width="900"
            Height="600"
+           ShowTheme="True"
            TitleBarMode="High">
     <wd:Window.TitleBarLayout>
         <StackPanel Orientation="Horizontal" Spacing="8">
@@ -249,7 +295,7 @@ private void OnCarouselItemClick(object? sender, RoutedEventArgs e)
 
 默认外观参考 WPF：无常驻底色，悬停或按下时显示背景反馈，支持键盘焦点、空格键、命令及禁用状态。可通过 `WD.SwitchButton` 主题扩展样式。通常保持 `IsThreeState="False"`；若启用三态，`IsChecked="{x:Null}"` 与未选中一样显示 `UncheckedContent`。纯图标按钮应设置 `AutomationProperties.Name`。
 
-这与 `wd-switch` 滑块样式不同：`SwitchButton` 用于切换两套内容。Demo 的“自定义 → SwitchButton”包含文本双向绑定、图标、SVG、图片和明暗主题示例；主题逻辑由应用处理，页面会同步其他入口及系统引起的实际主题变化。多种主题色或“跟随系统”模式仍应使用多选项选择器。
+这与 `wd-switch` 滑块样式不同：`SwitchButton` 用于切换两套内容。多种主题色或“跟随系统”模式应使用多选项选择器。
 
 ### GestureUnlock（手势解锁）
 
@@ -271,7 +317,6 @@ private void GestureUnlock_Completed(object? sender, RoutedEventArgs e)
 
 ### OtpBox（验证码输入）
 
-示例程序的“自定义”菜单提供 `OtpBox` 页面，包含四位验证码校验（正确值为 `1234`）、六位自定义尺寸输入和清空操作。
 支持数字输入、自动跳转、方向键导航、退格和 `Ctrl+V` 粘贴。`Value` 默认双向绑定，所有格子填满后才包含完整验证码，未填满时为空字符串。
 完成输入后可通过 `Completed` 事件或 `CompletedCommand` 校验；设置 `State` 为 `OtpBoxState.Success` 或 `OtpBoxState.Error` 可显示反馈，1.5 秒后状态复位，错误时还会清空输入。
 
@@ -299,7 +344,7 @@ private void GestureUnlock_Completed(object? sender, RoutedEventArgs e)
 
 设置 `Orientation="Horizontal"` 切换横向布局。节点支持 `Label`/`LabelTemplate`、`Dot`/`DotTemplate` 和 `ContentTemplate`，`Position="Start"` 或 `"End"` 可覆盖单个节点的位置。`IsLoading` 显示旋转节点，并将相邻连接线显示为虚线。
 
-使用 `ItemsSource` 和 `ItemTemplate` 展示数据集合时，通过 `Timeline.Styles` 中的 `Style Selector="wd|TimelineItem"` 为生成的节点绑定 `Label`、`DotBrush` 和 `IsLoading` 等属性。示例程序的“自定义 → Timeline”页面提供基础、横向和动态增删节点演示。
+使用 `ItemsSource` 和 `ItemTemplate` 展示数据集合时，通过 `Timeline.Styles` 中的 `Style Selector="wd|TimelineItem"` 为生成的节点绑定 `Label`、`DotBrush` 和 `IsLoading` 等属性。
 
 ### ColorPicker（颜色选择器）
 
@@ -348,7 +393,7 @@ private void GestureUnlock_Completed(object? sender, RoutedEventArgs e)
                         Delimiter=", " />
 ```
 
-将 `SelectedItemsExt` 绑定到 ViewModel 的 `IList` 可同步已选项；`ShowType="Tag"` 可用标签显示已选项，`IsSearch="False"` 可关闭搜索。示例程序的“自定义 → MultiSelectComboBox”页面还展示了自定义 `ItemTemplate`。
+将 `SelectedItemsExt` 绑定到 ViewModel 的 `IList` 可同步已选项；`ShowType="Tag"` 可用标签显示已选项，`IsSearch="False"` 可关闭搜索。
 
 ### Segmented（分段选择器）
 
@@ -410,8 +455,6 @@ private void GestureUnlock_Completed(object? sender, RoutedEventArgs e)
 ```
 
 `Classes="badge"` 使用左侧名称、右侧内容的紧凑双段布局，不显示关闭按钮。它仍以 `Tag` 控件承载内容；`Label`、`LabelBackground`、`LabelForeground` 控制左段，`Content`、`Background`、`Foreground` 控制右段，支持绑定、内容模板、字号、内边距和圆角。这里的 README Badge 与 `wd:Badge.BadgeText` 等附加属性提供的控件角标用途不同；普通 Tag 的外观和关闭行为不变。
-
-上面数值仅为样式示例；首页版本来自当前控件库程序集（保留预发布版本号），Star 来自 GitHub API，下载量来自 NuGet 搜索 API 的 `totalDownloads`（全部版本累计值），不会用示例数据替代失败的请求。
 
 ### Mask（遮罩）
 
@@ -487,7 +530,6 @@ private void GestureUnlock_Completed(object? sender, RoutedEventArgs e)
 ```
 
 `Position` 支持 `Left`、`Top`、`Right` 和 `Bottom`；点击遮罩区域可关闭抽屉。`HeaderWidth` 用于限制左右抽屉的宽度，未设置时最大宽度默认为控件宽度的三分之二。
-抽屉面板及阴影裁剪在边框内部，收起距离包含阴影范围，关闭后不会在边缘残留色条。
 首次布局直接呈现 `IsOpen` 对应的状态，不播放开合动画；后续切换 `IsOpen` 时播放动画。
 
 ### Expander（展开面板）

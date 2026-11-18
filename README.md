@@ -37,16 +37,57 @@ Add the WD namespace and load the resources in `App.axaml`:
              xmlns:wd="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia"
              x:Class="YourApp.App">
     <Application.Resources>
-        <wd:Resources Theme="Default"/>
+        <wd:Resources/>
     </Application.Resources>
 </Application>
 ```
 
-> `Theme` supports `Light`, `Dark`, and `Default` (follows the system theme).
+`ThemeMode` supports `System`, `Light`, and `Dark`. Omit the `Theme` attribute to restore the saved mode, or follow the system when no mode has been saved. To set a mode explicitly, use `Theme="System"`, `Theme="Light"`, or `Theme="Dark"`.
+
+`ThemeManager.Instance.Theme` is the selected mode; `ActualTheme` is the applied `Light` or `Dark` theme. Listen to `ThemeModeChanged` for changes to the selection, and to `ThemeChanged` for changes to the applied theme. When migrating, replace `ThemeType.Default` with `ThemeMode.System` and `ThemeType.Light`/`Dark` with `ThemeMode.Light`/`Dark`.
+
+### Localization
+
+The library includes Chinese (`zh-CN`), English (`en-US`), and Korean (`ko-KR`) resources. Change the UI culture at runtime and bind XAML text with the `Language` markup extension:
+
+```csharp
+using System.Globalization;
+using WPFDevelopers.Avalonia;
+
+LanguageManager.Instance.ChangeLanguage(new CultureInfo("ko-KR"));
+```
+
+```xml
+<TextBlock Text="{wd:Language Key=OK}" />
+```
+
+In the demo home page, **Personalization → Language** changes the display language for the samples and control library.
 
 ---
 
 ## Controls
+
+### Dialog
+
+`Dialog` displays an in-window overlay and returns a result from `ShowAsync`. Its content must be a `UserControl` not attached to another container. The owner must be visible and provide an `OverlayLayer`; only one Dialog may be open per window.
+
+```csharp
+var dialog = new Dialog
+{
+    Owner = ownerWindow,
+    Title = "Edit",
+    Content = new EditUserControl(),
+    DialogWidth = 400
+};
+dialog.Closing += (_, e) =>
+{
+    if (e.Reason == DialogCloseReason.Confirm && !CanSave())
+        e.Cancel = true;
+};
+DialogResult result = await dialog.ShowAsync();
+```
+
+Use the two-way `IsOpen` property, `IsConfirmEnabled`, or `Close` to control the dialog. Confirmation updates binding sources and checks Avalonia data validation errors. `Closing` can cancel a close, and `ClosedCommand` receives the result. Closing the owner produces `Canceled`. Content cannot be replaced while the dialog is open. Button labels follow the current language unless `ConfirmText` or `CancelText` is set. Unlike WPF, this Avalonia implementation uses `UserControl` content and template buttons rather than WPF pages and routed commands. Owner-window `KeyBindings` can still fire while the dialog is open; gate those commands in `CanExecute` when necessary.
 
 ### Carousel
 
@@ -102,7 +143,11 @@ When autoplay or the next arrow advances from the last slide, the first slide en
 
 ### Window
 
-On Windows, `wd:Window` uses the WD title bar and window buttons; on other platforms it falls back to Avalonia's native `Window`. `TitleBarMode="High"` uses a taller title bar, and `TitleBarLayout` places toolbar content between the title and window buttons.
+On Windows, `wd:Window` uses the WD title bar and window buttons; on other platforms it falls back to Avalonia's native `Window`. `TitleBarMode="High"` uses a taller title bar, and `TitleBarLayout` places toolbar content between the title and window buttons. Set `ShowTheme="True"` to add a title-bar menu for following the system theme or choosing light or dark mode. The selection is persisted per application in local application data.
+
+The theme menu uses the WPF version's vector icons: hover over the theme button to open it, then move into the menu to choose a mode. Leaving both the button and menu closes it after 150 ms. Clicking or using the keyboard also opens the menu; Up/Down navigates and Escape closes it.
+
+Open **Basic → Window** in the demo for title-bar and modal window examples. A modal window can return a result through `ShowDialog<bool>(owner)` and `Close(true)` / `Close(false)`.
 
 ```xml
 <wd:Window xmlns="https://github.com/avaloniaui"
@@ -112,6 +157,7 @@ On Windows, `wd:Window` uses the WD title bar and window buttons; on other platf
            Title="My App"
            Width="900"
            Height="600"
+           ShowTheme="True"
            TitleBarMode="High">
     <wd:Window.TitleBarLayout>
         <StackPanel Orientation="Horizontal" Spacing="8">
@@ -249,7 +295,7 @@ Both orientations use the dedicated `WD.ScrollBarThumbBrush`; hover and drag use
 
 The default appearance follows WPF: no persistent background, with visual feedback on hover and press. Keyboard focus, the Space key, commands, and the disabled state are supported. Extend its styling with the `WD.SwitchButton` theme. Keep `IsThreeState="False"` in most cases; when three-state mode is enabled, `IsChecked="{x:Null}"` displays `UncheckedContent`, just like the unchecked state. Set `AutomationProperties.Name` on icon-only buttons.
 
-Unlike the `wd-switch` toggle-switch style, `SwitchButton` toggles between two content views. The demo's Custom > SwitchButton page shows two-way text binding, icons, SVG, images, and light/dark themes. Theme changes are handled by the application, and the page stays in sync with other entry points and system-initiated changes. Use a multi-option selector for multiple accent colors or a "follow system" option.
+Unlike the `wd-switch` toggle-switch style, `SwitchButton` toggles between two content views. Use a multi-option selector for multiple accent colors or a "follow system" option.
 
 ### GestureUnlock (Pattern Unlock)
 
@@ -271,7 +317,6 @@ private void GestureUnlock_Completed(object? sender, RoutedEventArgs e)
 
 ### OtpBox (One-Time Password Input)
 
-The demo's Custom menu includes an `OtpBox` page with four-digit verification (the expected value is `1234`), a six-digit input with custom sizing, and a clear action.
 The control supports numeric input, automatic focus advance, arrow-key navigation, Backspace, and `Ctrl+V` paste. `Value` is two-way by default and contains the complete code only when every box is filled; otherwise, it is an empty string.
 Validate completed input with the `Completed` event or `CompletedCommand`. Set `State` to `OtpBoxState.Success` or `OtpBoxState.Error` to show feedback. The state resets after 1.5 seconds; an error also clears the input.
 
@@ -299,7 +344,7 @@ Supports vertical and horizontal timelines. `Mode` can be `Start` (content on th
 
 Set `Orientation="Horizontal"` for a horizontal layout. Items support `Label` / `LabelTemplate`, `Dot` / `DotTemplate`, and `ContentTemplate`. Set an item's `Position` to `"Start"` or `"End"` to override its position. `IsLoading` displays a rotating dot and renders adjacent connector lines as dashed.
 
-To display a data collection with `ItemsSource` and `ItemTemplate`, use a `Style Selector="wd|TimelineItem"` in `Timeline.Styles` to bind properties such as `Label`, `DotBrush`, and `IsLoading` on generated items. The demo's Custom > Timeline page shows basic and horizontal layouts, plus dynamically adding and removing items.
+To display a data collection with `ItemsSource` and `ItemTemplate`, use a `Style Selector="wd|TimelineItem"` in `Timeline.Styles` to bind properties such as `Label`, `DotBrush`, and `IsLoading` on generated items.
 
 ### ColorPicker
 
@@ -348,7 +393,7 @@ Supports search, multiple selection, select-all, and displaying selected items a
                         Delimiter=", " />
 ```
 
-Bind `SelectedItemsExt` to an `IList` in your view model to synchronize the selected items. Set `ShowType="Tag"` to display selections as tags, or `IsSearch="False"` to disable search. The demo's Custom > MultiSelectComboBox page also shows a custom `ItemTemplate`.
+Bind `SelectedItemsExt` to an `IList` in your view model to synchronize the selected items. Set `ShowType="Tag"` to display selections as tags, or `IsSearch="False"` to disable search.
 
 ### Segmented
 
@@ -410,8 +455,6 @@ The `PageChanged` event args, `PaginationChangedEventArgs`, provide the updated 
 ```
 
 `Classes="badge"` uses a compact two-part layout with a label on the left and content on the right, without a close button. It is still a `Tag` control: `Label`, `LabelBackground`, and `LabelForeground` configure the left side, while `Content`, `Background`, and `Foreground` configure the right. Bindings, content templates, font size, padding, and corner radius are supported. This README badge differs from control-attached badges provided by properties such as `wd:Badge.BadgeText`; the appearance and close behavior of regular tags are unchanged.
-
-The values above are for styling examples only. The home page gets the version from the current control-library assembly (preserving prerelease version numbers), stars from the GitHub API, and total downloads across all versions from the NuGet search API's `totalDownloads`. Failed requests are never replaced with sample data.
 
 ### Mask
 
@@ -487,7 +530,6 @@ The values above are for styling examples only. The home page gets the version f
 ```
 
 `Position` supports `Left`, `Top`, `Right`, and `Bottom`. Click the overlay to close the drawer. `HeaderWidth` limits the width of left and right drawers; if unset, the maximum width defaults to two-thirds of the control's width.
-The drawer panel and shadow are clipped inside the border. The closed offset accounts for the shadow so no colored strip remains at the edge.
 On initial layout, the drawer immediately reflects `IsOpen` without an animation. Animations play when `IsOpen` changes afterward.
 
 ### Expander

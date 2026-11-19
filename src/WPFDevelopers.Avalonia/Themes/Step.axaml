@@ -1,0 +1,113 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:WPFDevelopers.Avalonia.Controls">
+    <ControlTheme x:Key="{x:Type controls:StepItem}" TargetType="controls:StepItem">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Name="PART_Layout" Orientation="Vertical">
+                    <Border Name="PART_Marker"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Center"
+                            Background="{DynamicResource WD.BaseBrush}"
+                            BorderBrush="{DynamicResource WD.BaseBrush}"
+                            BorderThickness="1"
+                            CornerRadius="15">
+                        <Grid>
+                            <TextBlock Name="PART_Index"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="{TemplateBinding Index}" />
+                            <PathIcon Name="PART_Complete"
+                                      Width="12"
+                                      Height="12"
+                                      Data="{StaticResource WD.CompleteGeometry}"
+                                      IsVisible="False" />
+                        </Grid>
+                    </Border>
+                    <ContentPresenter Name="PART_Content"
+                                      Margin="0,6,0,0"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      TextElement.Foreground="{DynamicResource WD.RegularTextBrush}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+        <Style Selector="^:waiting /template/ Border#PART_Marker">
+            <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.BaseBrush}" />
+        </Style>
+        <Style Selector="^:waiting /template/ TextBlock#PART_Index">
+            <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryTextBrush}" />
+        </Style>
+        <Style Selector="^:inprogress /template/ Border#PART_Marker">
+            <Setter Property="Background" Value="{DynamicResource WD.PrimaryBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+        <Style Selector="^:inprogress /template/ TextBlock#PART_Index">
+            <Setter Property="Foreground" Value="{DynamicResource WD.WindowTextBrush}" />
+        </Style>
+        <Style Selector="^:complete /template/ Border#PART_Marker">
+            <Setter Property="Background" Value="{DynamicResource WD.BackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+        <Style Selector="^:complete /template/ TextBlock#PART_Index">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+        <Style Selector="^:complete /template/ PathIcon#PART_Complete">
+            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+        <Style Selector="^:vertical /template/ StackPanel#PART_Layout">
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
+        <Style Selector="^:vertical /template/ Border#PART_Marker">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style Selector="^:vertical /template/ ContentPresenter#PART_Content">
+            <Setter Property="Margin" Value="6,0,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type controls:Step}" TargetType="controls:Step">
+        <Setter Property="ItemContainerTheme" Value="{StaticResource {x:Type controls:StepItem}}" />
+        <Setter Property="ItemsPanel">
+            <ItemsPanelTemplate>
+                <UniformGrid Rows="1" />
+            </ItemsPanelTemplate>
+        </Setter>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid>
+                    <Border Name="PART_ProgressTrack"
+                            Height="1"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="{DynamicResource WD.BaseBrush}">
+                        <Border.RenderTransform>
+                            <TranslateTransform />
+                        </Border.RenderTransform>
+                    </Border>
+                    <Border Name="PART_ProgressFill"
+                            Height="1"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Background="{DynamicResource WD.PrimaryBrush}">
+                        <Border.RenderTransform>
+                            <TranslateTransform />
+                        </Border.RenderTransform>
+                    </Border>
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:wd="using:WPFDevelopers.Avalonia.Windows">
+                    xmlns:wd="using:WPFDevelopers.Avalonia.Windows"
+                    xmlns:lang="https://github.com/WPFDevelopersOrg/WPFDevelopers.Avalonia">
     <ControlTheme x:Key="WD.WindowButton" TargetType="Button" BasedOn="{StaticResource wd-base}">
         <Setter Property="Width" Value="45" />
         <Setter Property="Padding" Value="0" />
@@ -28,6 +29,26 @@
         <Style Selector="^:pressed">
             <Setter Property="Background" Value="#C50F1F" />
             <Setter Property="Foreground" Value="White" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="WD.WindowThemePopupItem" TargetType="Button"
+                  BasedOn="{StaticResource wd-normal}">
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="MinWidth" Value="150" />
+        <Setter Property="Padding" Value="8,7" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryTextBrush}" />
+        <Style Selector="^.selected">
+            <Setter Property="Foreground" Value="{DynamicResource WD.PrimaryBrush}" />
+        </Style>
+        <Style Selector="^:pointerover /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource WD.BaseBrush}" />
+        </Style>
+        <Style Selector="^:focus-visible /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{DynamicResource WD.BaseBrush}" />
         </Style>
     </ControlTheme>
 
@@ -64,11 +85,91 @@
                                     <StackPanel Name="PART_CaptionButtons" Grid.Column="3"
                                                 Orientation="Horizontal"
                                                 WindowDecorationProperties.ElementRole="User">
+                                        <Button Name="PART_ThemeSwitchButton"
+                                                Width="45"
+                                                Theme="{StaticResource WD.WindowButton}"
+                                                IsVisible="{TemplateBinding ShowTheme}"
+                                                Focusable="True"
+                                                IsTabStop="True"
+                                                ToolTip.Tip="{lang:Language Key=Theme}"
+                                                AutomationProperties.Name="{lang:Language Key=Theme}">
+                                            <Grid>
+                                                <Path Name="PART_ThemeGlyph" Width="18" Height="18"
+                                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      Data="{DynamicResource WD.SystemThemeGeometry}"
+                                                      Stretch="Uniform" StrokeJoin="Round"
+                                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                                      StrokeThickness="1.1" />
+                                                <Popup Name="PART_ThemePopup"
+                                                       IsLightDismissEnabled="False"
+                                                       VerticalOffset="4"
+                                                       Placement="Bottom">
+                                                    <Border Background="{DynamicResource WD.BackgroundBrush}"
+                                                            BorderBrush="{DynamicResource WD.BaseBrush}"
+                                                            BorderThickness="1"
+                                                            CornerRadius="4">
+                                                        <StackPanel Margin="4">
+                                                            <Button Name="PART_SystemThemeButton"
+                                                                    Theme="{StaticResource WD.WindowThemePopupItem}"
+                                                                    AutomationProperties.Name="{lang:Language Key=FollowSystem}">
+                                                                <Grid ColumnDefinitions="16,*,16">
+                                                                    <Path Width="16" Height="16" VerticalAlignment="Center"
+                                                                          Data="{DynamicResource WD.SystemThemeGeometry}"
+                                                                          Stretch="Uniform" StrokeJoin="Round" StrokeThickness="1.1"
+                                                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                                                                    <TextBlock Grid.Column="1" Margin="10,0,14,0"
+                                                                               VerticalAlignment="Center"
+                                                                               Text="{lang:Language Key=FollowSystem}" />
+                                                                    <PathIcon Name="PART_SystemThemeCheck"
+                                                                              Grid.Column="2" Width="12" Height="12"
+                                                                              Data="{DynamicResource WD.CheckMarkGeometry}"
+                                                                              IsVisible="False" />
+                                                                </Grid>
+                                                            </Button>
+                                                            <Button Name="PART_LightThemeButton"
+                                                                    Theme="{StaticResource WD.WindowThemePopupItem}"
+                                                                    AutomationProperties.Name="{lang:Language Key=LightMode}">
+                                                                <Grid ColumnDefinitions="16,*,16">
+                                                                    <Path Width="16" Height="16" VerticalAlignment="Center"
+                                                                          Data="{DynamicResource WD.SunGeometry}" Stretch="Uniform"
+                                                                          Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                                                                    <TextBlock Grid.Column="1" Margin="10,0,14,0"
+                                                                               VerticalAlignment="Center"
+                                                                               Text="{lang:Language Key=LightMode}" />
+                                                                    <PathIcon Name="PART_LightThemeCheck"
+                                                                              Grid.Column="2" Width="12" Height="12"
+                                                                              Data="{DynamicResource WD.CheckMarkGeometry}"
+                                                                              IsVisible="False" />
+                                                                </Grid>
+                                                            </Button>
+                                                            <Button Name="PART_DarkThemeButton"
+                                                                    Theme="{StaticResource WD.WindowThemePopupItem}"
+                                                                    AutomationProperties.Name="{lang:Language Key=DarkMode}">
+                                                                <Grid ColumnDefinitions="16,*,16">
+                                                                    <Path Width="16" Height="16" VerticalAlignment="Center"
+                                                                          Data="{DynamicResource WD.MoonGeometry}"
+                                                                          Stretch="Uniform" StrokeJoin="Round" StrokeThickness="1.1"
+                                                                          Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+                                                                    <TextBlock Grid.Column="1" Margin="10,0,14,0"
+                                                                               VerticalAlignment="Center"
+                                                                               Text="{lang:Language Key=DarkMode}" />
+                                                                    <PathIcon Name="PART_DarkThemeCheck"
+                                                                              Grid.Column="2" Width="12" Height="12"
+                                                                              Data="{DynamicResource WD.CheckMarkGeometry}"
+                                                                              IsVisible="False" />
+                                                                </Grid>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </Border>
+                                                </Popup>
+                                            </Grid>
+                                        </Button>
                                         <Button Name="PART_MinimizeButton"
                                                 Theme="{StaticResource WD.WindowButton}"
                                                 AutomationProperties.Name="Minimize"
                                                 WindowDecorationProperties.ElementRole="MinimizeButton">
                                             <Rectangle Width="10" Height="0.8" Margin="0,7,0,0"
+                                                       HorizontalAlignment="Center"
                                                        Fill="{DynamicResource WD.WindowTextBrush}" />
                                         </Button>
                                         <Button Name="PART_RestoreButton"
@@ -110,6 +211,9 @@
         </Setter>
         <Style Selector="^[TitleBarMode=High]">
             <Setter Property="TitleHeight" Value="50" />
+        </Style>
+        <Style Selector="^ /template/ Path#PART_ThemeGlyph.light">
+            <Setter Property="Fill" Value="{Binding Stroke, RelativeSource={RelativeSource Self}}" />
         </Style>
         <Style Selector="^[TitleBarMode=High] /template/ Image#PART_TitleBarIcon">
             <Setter Property="Width" Value="23" />

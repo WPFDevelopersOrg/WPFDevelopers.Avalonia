@@ -45,7 +45,7 @@ namespace WPFDevelopers.Demo.DemoPages
         {
             var app = Application.Current
                 ?? throw new InvalidOperationException("The application is not initialized.");
-            app.SetTheme(ThemeSwitch.IsChecked == true ? ThemeType.Dark : ThemeType.Light);
+            app.SetTheme(ThemeSwitch.IsChecked == true ? ThemeMode.Dark : ThemeMode.Light);
         }
     }
 }
